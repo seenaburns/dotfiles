@@ -1,4 +1,4 @@
-Configs
-=======
+dotfiles
+========
 
 Personal (general) config files
