@@ -13,6 +13,9 @@ export CLICOLOR=1
 export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='1;32'
 
+# Use Terminal's colors for emacs (Mac OS X)
+export TERM='xterm-color'
+
 # ------------------------------------------------------------------------------
 # Command Aliases / Functions
 # ------------------------------------------------------------------------------
