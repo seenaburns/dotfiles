@@ -1,0 +1,39 @@
+#! /bin/sh
+
+. ~/.colors/current-sh
+
+if [ $(pgrep -cx panel) -gt 1 ] ; then
+    printf "%s\n" "The panel is already running." >&2
+    exit 1
+fi
+
+trap 'trap - TERM; kill 0' INT TERM QUIT EXIT
+
+# flavor=${1:-bar}
+flavor=${1:-dzen2}
+
+PANEL_HEIGHT=16
+
+bspc config top_padding $PANEL_HEIGHT
+bspc control --put-status
+xtitle -sf 'T%s' > "$PANEL_FIFO" &
+clock -sf 'S%a %H:%M' > "$PANEL_FIFO" &
+
+echo "$PANEL_HEIGHT $COLOR_FOREGROUND $COLOR_BACKGROUND"
+
+case "$flavor" in
+    bar)
+        cat "$PANEL_FIFO" | panel_bar | bar-aint-recursive &
+        ;;
+    dzen2)
+        # IMPORT COLORS
+        . panel_colors
+        FONT_FAMILY='fixed'
+        FONT_SIZE=15
+        cat "$PANEL_FIFO" | \
+            panel_dzen2 -f "$FONT_FAMILY" -s "$FONT_SIZE" | \
+            dzen2 -h $PANEL_HEIGHT -ta l &
+        ;;
+esac
+
+wait

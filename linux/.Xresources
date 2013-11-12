@@ -1,0 +1,33 @@
+#include "/home/seena/.colors/current-xr"
+
+! Xresources
+
+! Dzen Settings
+! dzen2.font:       -*-fixed-*-*-*-*-*-*-*-*-*-*-*-*
+! dzen2.font:       xft:monaco:size=10
+dzen2.font: xft:lemon:pixelsize=9:antialias=false:hinting=true
+dzen2.letterSpace: -3
+! dzen2.foreground: white
+! dzen2.background: black
+
+! URxvt Settings
+URxvt.scrollBar: false 
+! URxvt.font: -*-lemon-*-*-*-*-*-*-*-*-*-*-*-*
+! URxvt.font: xft:monaco:size=10
+! URxvt.font: xft:uushi:pixelsize=10:antialias=false:hinting=true
+URxvt*font: xft:lemon:pixelsize=9:antialias=false:hinting=true
+URxvt*boldFont: xft:lemon:pixelsize=9:antialias=false:hinting=true
+
+URxvt.letterSpace:   -3
+
+! Xft.dpi: 96
+Xft.autohint: true
+Xft.antialias: false
+Xft.hinting: true
+Xft.hintstyle: hintslight
+
+! urxvt*transparent: true
+! urxvt*shading: 10
+
+urxvt.internalBorder: 10
+
