@@ -1,6 +1,17 @@
 (provide 'general)
 
 ;; ------------------------------------------------------------
+;;                   Package Manager
+;; ------------------------------------------------------------
+(require 'package)
+(package-initialize)
+(setq package-archives
+      '(("gnu" . "http://elpa.gnu.org/packages/")
+        ("marmalade" . "http://marmalade-repo.org/packages/")
+        ("melpa" . "http://melpa.milkbox.net/packages/")))
+; list-packages to find packages
+
+;; ------------------------------------------------------------
 ;;                  General Editting
 ;; ------------------------------------------------------------
 
@@ -10,15 +21,16 @@
 ; Delete selected text when typing
 (delete-selection-mode 1)
 
-; Emacs package system
-; http://ergoemacs.org/emacs/emacs_package_system.html
-; Auto insert/delete pairs
-; autopair
-
-; Parentheses (highlight match + entire bracket)
+; Parentheses
+; (highlight match + entire bracket)
 (show-paren-mode 1)
 (setq show-paren-delay 0)
 (setq show-paren-style 'expression)
+; Autopairs
+
+(require 'autopair)
+(autopair-global-mode 1)
+
 
 ; Tabs (spaces)
 (setq indent-tabs-mode nil)
