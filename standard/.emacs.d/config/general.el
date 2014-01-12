@@ -39,6 +39,11 @@
 ; ido
 (require 'ido)
 (ido-mode t)
+(custom-set-variables
+ '(ido-enable-last-directory-history nil)
+ '(ido-record-commands nil)
+ '(ido-max-work-directory-list 0)
+ '(ido-max-work-file-list 0))
 
 ;; ------------------------------------------------------------
 ;;                   Handling Backups
