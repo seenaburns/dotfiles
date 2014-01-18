@@ -1,0 +1,14 @@
+# ignore case for tab completion
+set completion-ignore-case on
+
+# show all suggestions after pressing tab once instead of twice
+set show-all-if-ambiguous on
+
+# complete fi|l to file.txt instead of file.txtl
+# fi|.txt is still completed to file.txt.txt
+# skip-completed-text was added in bash 4.1
+set skip-completed-text on
+
+# option-left and option-right
+"\e\e[C": forward-word
+"\e\e[D": backward-word
