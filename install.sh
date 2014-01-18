@@ -34,7 +34,10 @@ then
         "$SPACING Moved .bash_profile to .bash_private"
     fi
     cp standard/.bash_profile ~/.bash_profile;
-    echo "$INSTALL .bash_profile to ~/"
+    echo "$INSTALL .bash_profile"
+else
+    cp standard/.bash_profile ~/.bash_profile;
+    echo "$INSTALL .bash_profile"
 fi
 
 # For other files
