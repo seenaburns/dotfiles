@@ -1,10 +1,7 @@
 set nocompatible
 
-" Pathogen
-execute pathogen#infect()
-filetype plugin indent on
-
 syntax on
+filetype plugin indent on
 
 set showcmd         " Show command sequence as entering
 set ruler           " Show row / col
