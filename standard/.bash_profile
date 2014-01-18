@@ -23,5 +23,9 @@ export TERM='xterm-color'
 # la: display files as list, hidden files, human-readable form
 alias la="ls -lah"
 
+# pbcopy / pbpaste for OSX clipboard
+alias pp=pbpaste
+alias pc=pbcopy
+
 # tree: show tree, limit level to 2 automatically
 alias tree="tree -L 2"
