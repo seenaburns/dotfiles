@@ -20,6 +20,42 @@ FAILED=$(echo -n "[  "; color_text FAILED $RED; echo -n " ]");
 SKIP=$(echo -n "[    SKIP ]");
 INSTALL=$(echo -n "[ "; color_text INSTALL $GREEN; echo -n   " ]")
 
+function check_diff() {
+    for f in $(find standard -type f);
+    do
+        # Check gitignore
+        ignored=0
+        for ign in $(cat .gitignore)
+        do
+            [ ${f#$ign} != $f ] && ignored=1
+        done
+        [ $ignored == 1 ] && continue
+
+        ff=${f#standard/}
+        if [ -f ~/$ff ]
+        then
+            dout=$(diff -u ~/$ff $f)
+            if [ ! -z "$dout" ]
+            then
+                echo -n "[ "; color_text DIFF $RED; echo -n " ] "; echo "~/$ff"
+            else
+                echo "[ SAME ] ~/$ff"
+            fi
+        fi
+    done
+}
+
+# -c Check files for differences
+while getopts ":c" opt;
+do
+    case $opt in
+        c)
+            check_diff
+            exit
+            ;;
+    esac
+done
+
 # Custom install for bash_profile
 # Make existing bash_profile to bash_private
 if [ -f ~/.bash_profile ]
