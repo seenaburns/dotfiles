@@ -11,10 +11,18 @@
         ("melpa" . "http://melpa.milkbox.net/packages/")))
 ; list-packages to find packages
 
+; Require packages
+
+; Autopairs
+(require 'autopair)
+(autopair-global-mode 1)
+
+(require 'auto-complete)
+(global-auto-complete-mode t)
+
 ;; ------------------------------------------------------------
 ;;                  General Editting
 ;; ------------------------------------------------------------
-
 ; Display line number
 (global-linum-mode 1)
 
@@ -26,10 +34,6 @@
 (show-paren-mode 1)
 (setq show-paren-delay 0)
 (setq show-paren-style 'expression)
-; Autopairs
-
-(require 'autopair)
-(autopair-global-mode 1)
 
 
 ; Tabs (spaces)
@@ -44,6 +48,13 @@
  '(ido-record-commands nil)
  '(ido-max-work-directory-list 0)
  '(ido-max-work-file-list 0))
+
+; tramp mode for remote files
+(require 'tramp)
+(setq tramp-default-method "scp")
+
+; Set mode for certain filetypes
+(add-to-list 'auto-mode-alist '("\\.pde\\'" . java-mode))
 
 ;; ------------------------------------------------------------
 ;;                   Handling Backups
