@@ -21,6 +21,12 @@ SKIP=$(echo -n "[    SKIP ]");
 INSTALL=$(echo -n "[ "; color_text INSTALL $GREEN; echo -n   " ]")
 
 function check_diff() {
+    # Check each file in standard/ for differences.
+    # 
+    # Usage: check_diff $opt $filename
+    # -c: only print diff/same
+    # -d: print diff/same and diff -u output
+    # $filename: only check filename
     for f in $(find standard -type f);
     do
         # Check gitignore
@@ -32,12 +38,21 @@ function check_diff() {
         [ $ignored == 1 ] && continue
 
         ff=${f#standard/}
+        if [ ! -z "$2" ] && [ "$ff" != "$2" ]
+        then
+            continue
+        fi
+
         if [ -f ~/$ff ]
         then
             dout=$(diff -u ~/$ff $f)
             if [ ! -z "$dout" ]
             then
                 echo -n "[ "; color_text DIFF $RED; echo -n " ] "; echo "~/$ff"
+                if [ $1 == 'd' ]
+                then
+                    echo "$dout";
+                fi
             else
                 echo "[ SAME ] ~/$ff"
             fi
@@ -46,11 +61,15 @@ function check_diff() {
 }
 
 # -c Check files for differences
-while getopts ":c" opt;
+while getopts ":cd" opt;
 do
     case $opt in
         c)
-            check_diff
+            check_diff $opt $2
+            exit
+            ;;
+        d)
+            check_diff $opt $2
             exit
             ;;
     esac
