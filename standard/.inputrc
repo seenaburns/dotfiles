@@ -10,5 +10,5 @@ set show-all-if-ambiguous on
 set skip-completed-text on
 
 # option-left and option-right
-"\e\e[C": forward-word
-"\e\e[D": backward-word
+# "\e\e[C": forward-word
+# "\e\e[D": backward-word

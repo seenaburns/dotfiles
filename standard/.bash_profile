@@ -24,8 +24,12 @@ export TERM='xterm-color'
 alias la="ls -lah"
 
 # pbcopy / pbpaste for OSX clipboard
-alias pp=pbpaste
-alias pc=pbcopy
+# alias pp=pbpaste
+# alias pc=pbcopy
 
 # tree: show tree, limit level to 2 automatically
-alias tree="tree -L 2"
+# alias tree="tree -L 2"
+
+# Emacs daemon
+export ALTERNATE_EDITOR=""
+alias emc='emacsclient -t'
