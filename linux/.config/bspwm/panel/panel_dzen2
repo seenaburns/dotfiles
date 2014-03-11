@@ -1,53 +1,29 @@
-# #! /bin/sh
+#! /bin/sh
 #
-# Example panel for dzen2
+# BSPWM Desktop information for dzen2
 
-font_family='sans_serif'
-font_size=8
-
-. panel_colors
+# Import colors
 . ~/.colors/current-sh
 
-adaptive_centering=0
-# screen_width=$(sres -W)
-screen_width=1200
 NORMIFS=$IFS
 FIELDIFS=':'
 PADDING='  '
-offset=0
-
-while getopts 'afo:s:' opt ; do
-    case "$opt" in
-        a)
-            adaptive_centering=1
-            ;;
-        f)
-            font_family=$OPTARG
-            ;;
-        s)
-            font_size=$OPTARG
-            ;;
-        o)
-            offset=$OPTARG
-            ;;
-    esac
-done
-
-shift $((OPTIND - 1))
 
 while read -r line ; do
     case $line in
         S*)
             # clock output
-            sys_infos="^fg($COLOR_FOREGROUND)^bg($COLOR_BACKGROUND)${PADDING}${line#?}${PADDING}^fg()^bg()${PADDING}"
+            # sys_infos="^fg($COLOR_FOREGROUND)^bg($COLOR_BACKGROUND)${PADDING}${line#?}${PADDING}^fg()^bg()${PADDING}"
             ;;
         T*)
             # xtitle output
-            title="^fg($COLOR_FOREGROUND)^bg($COLOR_BACKGROUND)${PADDING}${line#?}${PADDING}^fg()^bg()"
+            # title="^fg($COLOR_FOREGROUND)^bg($COLOR_BACKGROUND)${PADDING}${line#?}${PADDING}^fg()^bg()"
             ;;
         W*)
             # bspwm internal state
-            wm_infos="$PADDING"
+            monitor="BETA"
+            wm1_infos="$PADDING"
+            wm2_infos="$PADDING"
             m_infos="$PADDING"
             IFS=$FIELDIFS
             set -- ${line#?}
@@ -59,51 +35,48 @@ while read -r line ; do
                         name=${item#?}
                         case $item in
                             O*)
-                                # focused occupied desktop
-                                FG=$COLOR_FOREGROUND
-                                BG=$COLOR_BLUE_LIGHT
+                                # focused & occupied desktop
+                                FG=$COLOR_RED_DARK
                                 ;;
                             F*)
-                                # focused free desktop
-                                FG=$COLOR_FOREGROUND
-                                BG=$COLOR_BLUE_LIGHT
+                                # focused & free desktop
+                                FG=$COLOR_RED_DARK
                                 ;;
                             U*)
-                                # focused urgent desktop
-                                FG=$COLOR_FOREGROUND
-                                BG=$COLOR_RED_DARK
+                                # focused & urgent desktop
+                                FG=$COLOR_RED_DARK
                                 ;;
                             o*)
                                 # occupied desktop
-                                FG=$COLOR_FOREGROUND
-                                BG=$COLOR_BLUE_DARK
+                                FG=$COLOR_WHITE_DARK
                                 ;;
                             f*)
                                 # free desktop
                                 FG=$COLOR_FOREGROUND
-                                BG=$COLOR_BACKGROUND
                                 ;;
                             u*)
                                 # urgent desktop
-                                FG=$COLOR_FOREGROUND
-                                BG=$COLOR_RED_DARK
+                                FG=$COLOR_BLUE_DARK
                                 ;;
                         esac
-                        wm_infos="${wm_infos}^fg(${FG})^bg(${BG})${PADDING}${name}${PADDING}"
+                        BG=$COLOR_BACKGROUND
+                        # Append to wm*_infos
+                        if [ "$monitor" = 'BETA' ];
+                        then
+                            wm2_infos="${wm2_infos}^fg(${FG})^bg(${BG})${PADDING}•${PADDING}";
+                        else
+                            wm1_infos="${wm1_infos}^fg(${FG})^bg(${BG})${PADDING}•${PADDING}";
+                        fi
                         ;;
                     L*)
                         # layout
                         # layout=$(printf "%s" "${item#?}" | sed 's/^\(.\).*/\U\1/')
                         # wm_infos="${wm_infos}^fg()^bg()${PADDING}${PADDING}^fg($COLOR_FOREGROUND)^bg($COLOR_BACKGROUND)${PADDING}$layout${PADDING}"
                         ;;
-                    M*)
-                        # active montior
-                        FG=$COLOR_FOREGROUND
-                        BG=$COLOR_RED_LIGHT
-                        m_infos="${m_infos}^fg(${FG})^bg(${BG})${PADDING}${item#?}${PADDING}"
-                        ;;
-                    m*)
-                        # inactive monitor
+                    [Mm]*)
+                        # Monitors
+                        # m:active m:inactive
+                        monitor=${item#?}
                         FG=$COLOR_FOREGROUND
                         BG=$COLOR_BACKGROUND
                         m_infos="${m_infos}^fg(${FG})^bg(${BG})${PADDING}${item#?}${PADDING}"
@@ -114,22 +87,11 @@ while read -r line ; do
             IFS=$NORMIFS
             ;;
     esac
-    set -- $(printf '%s\0%s\0%s' "$wm_infos" "$title" "$sys_infos" | sed 's/\^[a-z]\+([^)]*)//g' | xargs -0 txtw -f "$font_family" -s "$font_size")
-    left_width=$1
-    center_width=$2
-    right_width=$3
-    left_indent=$offset
-    right_indent=$((screen_width + $offset - right_width))
-    available_center=$((screen_width - (left_width + right_width)))
-    if [ $available_center -lt $center_width ] ; then
-        center_indent=$((left_indent + left_width))
-    else
-        if [ $adaptive_centering -eq 1 ] ; then
-            center_indent=$((left_width + (available_center - center_width) / 2))
-        else
-            center_indent=$(( (screen_width - center_width) / 2 ))
-        fi
-    fi
-    ci=$((center_indent + $offset))
-    printf "%s\n" "^pa($ci)$title^pa($left_indent)$wm_infos$m_infos^pa($right_indent)$sys_infos"
+
+    # Print for dzen2
+    # format: leftwm_info : rightwm_info
+    printf "^pa(10)%s" "$wm1_infos"
+    printf ":"
+    printf "^pa(10)%s" "$wm2_infos"
+    printf "\n"
 done

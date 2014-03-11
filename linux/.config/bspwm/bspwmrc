@@ -3,8 +3,8 @@
 # xrandr --output DVI-D-1 --off
 # xrandr --output DVI-I-1 --mode 1920x1200
 
-bspc monitor DVI-D-1 -n L -d i ii iii
-bspc monitor DVI-I-1 -n R -d I II III
+bspc monitor DVI-D-1 -n ALPHA -d i ii iii
+bspc monitor DVI-I-1 -n BETA -d I II III
 
 bspc config top_padding         18
 bspc config border_width        1

@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/bin/bash
 
 . ~/.colors/current-sh
 
@@ -20,20 +20,14 @@ bspc control --subscribe > "$PANEL_FIFO" &
 xtitle -sf 'T%s' > "$PANEL_FIFO" &
 clock -sf 'S%a %H:%M' > "$PANEL_FIFO" &
 
-echo "$PANEL_HEIGHT $COLOR_FOREGROUND $COLOR_BACKGROUND"
-
 case "$flavor" in
-    bar)
-        cat "$PANEL_FIFO" | panel_bar | bar-aint-recursive &
-        ;;
     dzen2)
-        # IMPORT COLORS
-        . panel_colors
         FONT_FAMILY='lemon'
         FONT_SIZE=8
         cat "$PANEL_FIFO" | \
             panel_dzen2 -o 1920 -f "$FONT_FAMILY" -s "$FONT_SIZE" | \
-            dzen2 -h $PANEL_HEIGHT -ta l &
+            tee >(sh ~/.config/bspwm/panel/split_panel.sh 1 0) | \
+            sh ~/.config/bspwm/panel/split_panel.sh 2 1920
         ;;
 esac
 
