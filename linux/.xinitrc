@@ -2,15 +2,17 @@
 xrdb -merge .Xresources
 
 # Background
-# feh --bg-fill ~/Pictures/Desktops/evergreen.jpg
-xsetroot -solid "#0b0a06"
+# feh --bg-tile ~/Pictures/goldenfall.png
+xsetroot -solid "#090502"
+# mplayer -noconsolecontrols -rootwin -ss 15 -endpos 60 -vo gl -nosound -loop 60 ~/tmp/darklens.mp4 < /dev/null &
 
 # Calibrate monitor
 xcalib -d :0 /usr/share/color/icc/dell_u2412m_standard.icc
+xcalib -d :1 /usr/share/color/icc/dell_u2412m_standard.icc
 
 # Include other font dirs
-# xset +fp /usr/local/share/fonts/
-# xset fp rehash
+xset +fp /usr/share/fonts/bitmap
+xset fp rehash
 
 # Activate BSPWM Window Manager
 sxhkd &
@@ -18,4 +20,4 @@ sxhkd &
 # Panel (also in /etc/profile)
 [ -e "$PANEL_FIFO" ] && rm "$PANEL_FIFO"
 mkfifo "$PANEL_FIFO"
-exec bspwm -s "$PANEL_FIFO" -p W 2>~/.bspwm.log
+exec bspwm W 2>~/.bspwm.log
