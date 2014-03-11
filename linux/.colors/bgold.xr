@@ -1,0 +1,41 @@
+!! Version 0.1
+urxvt*background: #090502
+urxvt*foreground: #FFE9AD
+urxvt*cursorColor: #FFE9AD
+
+!! black dark/light
+urxvt*color0: #372840
+urxvt*color8: #483454
+
+!! red dark/light
+urxvt*color1: #F39241
+urxvt*color9: #F5A969
+
+!! green dark/light
+urxvt*color2: #FFAE4D
+urxvt*color10: #FFAE4D
+
+!! yellow dark/light
+urxvt*color3: #F39241
+urxvt*color11: #F5A969
+
+!! blue dark/light
+urxvt*color4: #FFAE4D
+urxvt*color12: #FFAE4D
+
+!! magenta dark/light
+urxvt*color5: #F6BA53
+urxvt*color13: #F6BA53
+
+!! cyan dark/light
+urxvt*color6: #F6BA53
+urxvt*color14: #F6BA53
+
+!! white dark/light
+urxvt*color7: #FFE9AD
+urxvt*color15: #FFF3D5
+
+
+!! Dzen2
+dzen2.foreground: #FFE9AD
+dzen2.background: #090502
