@@ -3,7 +3,7 @@
 #
 
 super + alt + Escape
-    bspc quit
+    pkill -x panel; bspc quit
 
 super + w
     bspc window -c
@@ -76,7 +76,7 @@ super + Return
     urxvt
 
 super + space
-    dmenu_run -nb "#191613" -nf "#beaca0" -sb "#beaca0" -sf "#191613"
+    dmenu_run -nb "#3B192D" -nf "#FFF4E9" -sb "#FF2538" -sf "#FFF4E9"
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -84,7 +84,13 @@ super + Escape
 
 # Sound
 F11
-    amixer -q sset 'Master' 5%-
+    amixer -q sset 'Master' 3%-
 
 F12
-    amixer -q sset 'Master' 5%+
+    amixer -q sset 'Master' 4%+
+
+# Screen rotate
+super + F15
+    xrandr --output DVI-I-1 --rotate normal
+F15
+    xrandr --output DVI-I-1 --rotate right
