@@ -2,20 +2,21 @@
 #
 # Example panel for dzen2
 
-font_family='sans-serif'
-font_size=11
+font_family='sans_serif'
+font_size=8
 
 . panel_colors
 . ~/.colors/current-sh
 
 adaptive_centering=0
 # screen_width=$(sres -W)
-screen_width=1920
+screen_width=1200
 NORMIFS=$IFS
 FIELDIFS=':'
 PADDING='  '
+offset=0
 
-while getopts 'af:s:' opt ; do
+while getopts 'afo:s:' opt ; do
     case "$opt" in
         a)
             adaptive_centering=1
@@ -25,6 +26,9 @@ while getopts 'af:s:' opt ; do
             ;;
         s)
             font_size=$OPTARG
+            ;;
+        o)
+            offset=$OPTARG
             ;;
     esac
 done
@@ -44,6 +48,7 @@ while read -r line ; do
         W*)
             # bspwm internal state
             wm_infos="$PADDING"
+            m_infos="$PADDING"
             IFS=$FIELDIFS
             set -- ${line#?}
             while [ $# -gt 0 ] ; do
@@ -56,22 +61,22 @@ while read -r line ; do
                             O*)
                                 # focused occupied desktop
                                 FG=$COLOR_FOREGROUND
-                                BG=$COLOR_BLUE_DARK
+                                BG=$COLOR_BLUE_LIGHT
                                 ;;
                             F*)
                                 # focused free desktop
                                 FG=$COLOR_FOREGROUND
-                                BG=$COLOR_BLUE_DARK
+                                BG=$COLOR_BLUE_LIGHT
                                 ;;
                             U*)
                                 # focused urgent desktop
-                                FG=$COLOR_FOCUSED_URGENT_FG
-                                BG=$COLOR_FOCUSED_URGENT_BG
+                                FG=$COLOR_FOREGROUND
+                                BG=$COLOR_RED_DARK
                                 ;;
                             o*)
                                 # occupied desktop
-                                FG=$COLOR_OCUPPIED_FG
-                                BG=$COLOR_OCUPPIED_BG
+                                FG=$COLOR_FOREGROUND
+                                BG=$COLOR_BLUE_DARK
                                 ;;
                             f*)
                                 # free desktop
@@ -80,16 +85,28 @@ while read -r line ; do
                                 ;;
                             u*)
                                 # urgent desktop
-                                FG=$COLOR_URGENT_FG
-                                BG=$COLOR_URGENT_BG
+                                FG=$COLOR_FOREGROUND
+                                BG=$COLOR_RED_DARK
                                 ;;
                         esac
                         wm_infos="${wm_infos}^fg(${FG})^bg(${BG})${PADDING}${name}${PADDING}"
                         ;;
                     L*)
                         # layout
-                        layout=$(printf "%s" "${item#?}" | sed 's/^\(.\).*/\U\1/')
-                        wm_infos="${wm_infos}^fg()^bg()${PADDING}${PADDING}^fg($COLOR_FOREGROUND)^bg($COLOR_BACKGROUND)${PADDING}$layout${PADDING}"
+                        # layout=$(printf "%s" "${item#?}" | sed 's/^\(.\).*/\U\1/')
+                        # wm_infos="${wm_infos}^fg()^bg()${PADDING}${PADDING}^fg($COLOR_FOREGROUND)^bg($COLOR_BACKGROUND)${PADDING}$layout${PADDING}"
+                        ;;
+                    M*)
+                        # active montior
+                        FG=$COLOR_FOREGROUND
+                        BG=$COLOR_RED_LIGHT
+                        m_infos="${m_infos}^fg(${FG})^bg(${BG})${PADDING}${item#?}${PADDING}"
+                        ;;
+                    m*)
+                        # inactive monitor
+                        FG=$COLOR_FOREGROUND
+                        BG=$COLOR_BACKGROUND
+                        m_infos="${m_infos}^fg(${FG})^bg(${BG})${PADDING}${item#?}${PADDING}"
                         ;;
                 esac
                 shift
@@ -101,8 +118,8 @@ while read -r line ; do
     left_width=$1
     center_width=$2
     right_width=$3
-    left_indent=0
-    right_indent=$((screen_width - right_width))
+    left_indent=$offset
+    right_indent=$((screen_width + $offset - right_width))
     available_center=$((screen_width - (left_width + right_width)))
     if [ $available_center -lt $center_width ] ; then
         center_indent=$((left_indent + left_width))
@@ -113,5 +130,6 @@ while read -r line ; do
             center_indent=$(( (screen_width - center_width) / 2 ))
         fi
     fi
-    printf "%s\n" "^pa($center_indent)$title^pa($left_indent)$wm_infos^pa($right_indent)$sys_infos"
+    ci=$((center_indent + $offset))
+    printf "%s\n" "^pa($ci)$title^pa($left_indent)$wm_infos$m_infos^pa($right_indent)$sys_infos"
 done
