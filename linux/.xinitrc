@@ -2,13 +2,15 @@
 xrdb -merge .Xresources
 
 # Background
-# feh --bg-tile ~/Pictures/goldenfall.png
-xsetroot -solid "#090502"
+feh --bg-tile ~/Pictures/redfall.png
+# xsetroot -solid "#050505"
 # mplayer -noconsolecontrols -rootwin -ss 15 -endpos 60 -vo gl -nosound -loop 60 ~/tmp/darklens.mp4 < /dev/null &
 
 # Calibrate monitor
-xcalib -d :0 /usr/share/color/icc/dell_u2412m_standard.icc
-xcalib -d :1 /usr/share/color/icc/dell_u2412m_standard.icc
+# xcalib -d :0 /usr/share/color/icc/dell_u2412m_standard.icc
+# xcalib -d :1 /usr/share/color/icc/dell_u2412m_standard.icc
+dispwin -d1 /usr/share/color/icc/dell_u2412m_standard.icc
+dispwin -d2 /usr/share/color/icc/dell_u2312hm_custom_color.icc
 
 # Include other font dirs
 xset +fp /usr/share/fonts/bitmap
