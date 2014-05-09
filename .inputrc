@@ -9,6 +9,9 @@ set show-all-if-ambiguous on
 # skip-completed-text was added in bash 4.1
 set skip-completed-text on
 
-# option-left and option-right
+# Second TAB For fill cycles through options
+"\t": menu-complete
+
+# option-left and option-right (OS X)
 # "\e\e[C": forward-word
 # "\e\e[D": backward-word

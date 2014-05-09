@@ -3,6 +3,14 @@
 ;; ------------------------------------------------------------
 ;;                   Package Manager
 ;; ------------------------------------------------------------
+; Custom installed packages
+(add-to-list 'load-path "~/.emacs.d/bin/")
+
+;; For emacs23 load package.el
+(if (= emacs-major-version 24)
+    (load "package")
+)
+
 (require 'package)
 (package-initialize)
 (setq package-archives
@@ -56,6 +64,13 @@
 ; Set mode for certain filetypes
 (add-to-list 'auto-mode-alist '("\\.pde\\'" . java-mode))
 
+; If haskell-mode
+;   enable unicode
+;   enable indent
+(when (require 'haskell-mode nil 'noerror)
+  (setq haskell-font-lock-symbols t)
+  (add-hook 'haskell-mode-hook 'turn-on-haskell-indent))
+
 ;; ------------------------------------------------------------
 ;;                   Handling Backups
 ;; ------------------------------------------------------------
@@ -75,6 +90,19 @@
 
 ; (setq auto-save-list-file-prefix backup-dir)
 ; (setq auto-save-file-name-transforms `((".*" ,backup-dir t)))
+
+;; ------------------------------------------------------------
+;; Custom Set List
+;; ------------------------------------------------------------
+;; Move private custom set list to separate file
+(setq custom-file "~/.emacs.d/config/private-customlist.el")
+(load custom-file)
+
+;; Don't save ido history to ~/.ido.last
+(customize-set-variable ido-enable-last-directory-history nil)
+(customize-set-variable ido-max-work-file-list 0)
+(customize-set-variable ido-max-work-directory-list 0)
+(customize-set-variable ido-record-commands nil)
 
 ;; ------------------------------------------------------------
 ;;                    Org Mode Settings

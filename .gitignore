@@ -1,5 +1,8 @@
 .DS_Store
 .netrwhist
-standard/.emacs.d/backup
-standard/.emacs.d/auto-save-list
-standard/.emacs.d/elpa
+.emacs.d/backup
+.emacs.d/auto-save-list
+.emacs.d/elpa
+.emacs.d/tramp
+.emacs.d/ac-comphist.dat
+private*

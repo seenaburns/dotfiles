@@ -14,21 +14,23 @@ export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='1;32'
 
 # Use Terminal's colors for emacs (Mac OS X)
-export TERM='xterm-color'
+[[ "$OSTYPE" == "darwin"* ]] && export TERM='xterm-color'
 
 # ------------------------------------------------------
 #            Command Aliases / Functions
 # ------------------------------------------------------
-
 # la: display files as list, hidden files, human-readable form
 alias la="ls -lah"
 
 # pbcopy / pbpaste for OSX clipboard
-# alias pp=pbpaste
-# alias pc=pbcopy
+if [[ "$OSTYPE" == "darwin"* ]]
+then
+    alias pp=pbpaste
+    alias pc=pbcopy
+fi
 
 # tree: show tree, limit level to 2 automatically
-# alias tree="tree -L 2"
+alias tree="tree -L 2"
 
 # Emacs daemon
 export ALTERNATE_EDITOR=""
