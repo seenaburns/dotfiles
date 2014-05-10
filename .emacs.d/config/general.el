@@ -95,14 +95,14 @@
 ;; Custom Set List
 ;; ------------------------------------------------------------
 ;; Move private custom set list to separate file
-(setq custom-file "~/.emacs.d/config/private-customlist.el")
+(setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
 
 ;; Don't save ido history to ~/.ido.last
-(customize-set-variable ido-enable-last-directory-history nil)
-(customize-set-variable ido-max-work-file-list 0)
-(customize-set-variable ido-max-work-directory-list 0)
-(customize-set-variable ido-record-commands nil)
+(setq ido-enable-last-directory-history nil)
+(setq ido-max-work-file-list 0)
+(setq ido-max-work-directory-list 0)
+(setq ido-record-commands nil)
 
 ;; ------------------------------------------------------------
 ;;                    Org Mode Settings
