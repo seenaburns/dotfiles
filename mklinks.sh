@@ -16,7 +16,7 @@ function checkedlink {
     if [[ ! -d $dname ]]
     then
         echo "$1: Making dirs: $dname"
-        # mkdir -p $dname;
+        mkdir -p $dname;
     fi
 
     # Attempt to create symlink, fail if a file / directory exists
@@ -26,7 +26,7 @@ function checkedlink {
         return
     else
         success_msg "$fname"
-        # ln -s "$srcdir/$1" "$destdir/$1"
+        ln -s "$srcdir/$1" "$destdir/$1"
     fi
 }
 
