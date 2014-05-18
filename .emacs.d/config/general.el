@@ -4,11 +4,11 @@
 ;;                   Package Manager
 ;; ------------------------------------------------------------
 ; Custom installed packages
-(add-to-list 'load-path "~/.emacs.d/bin/")
+;; (add-to-list 'load-path "~/.emacs.d/bin/")
 
 ;; For emacs23 load package.el
-(if (= emacs-major-version 24)
-    (load "package")
+(if (= emacs-major-version 23)
+    (load "~/.emacs.d/bin/package")
 )
 
 (require 'package)
@@ -19,14 +19,12 @@
         ("melpa" . "http://melpa.milkbox.net/packages/")))
 ; list-packages to find packages
 
-; Require packages
+; Package settings (If installed)
+(when (require 'autopair nil 'noerror)
+  (autopair-global-mode 1))
 
-; Autopairs
-(require 'autopair)
-(autopair-global-mode 1)
-
-(require 'auto-complete)
-(global-auto-complete-mode t)
+(when (require 'auto-complete nil 'noerror)
+  (global-auto-complete-mode t))
 
 ;; ------------------------------------------------------------
 ;;                  General Editting
@@ -94,7 +92,10 @@
 ;; ------------------------------------------------------------
 ;; Custom Set List
 ;; ------------------------------------------------------------
-;; Move private custom set list to separate file
+; Move private custom set list to separate file
+; Create if doesn't exist
+(if (not (file-exists-p "~/.emacs.d/custom.el"))
+    (write-region "" nil "~/.emacs.d/custom.el"))
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
 
@@ -116,9 +117,5 @@
 ;; ORG MODE Settings (Global keys)
 (add-hook 'org-mode-hook 'turn-on-font-lock) ; not needed when global-font-lock-mode is on
 ; (global-set-key "\C-cl" 'org-store-link)
- (global-set-key "\C-ca" 'org-agenda)
+(global-set-key "\C-ca" 'org-agenda)
 ; (setq org-agenda-skip-scheduled-if-done 'true)
-(custom-set-variables
- '(org-agenda-files (quote ("~/Dropbox/Notes/todo.org"))))
-(custom-set-faces
- )
