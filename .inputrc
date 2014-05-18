@@ -1,17 +1,34 @@
+# option-left and option-right (OS X)
+# "\e\e[C": forward-word
+# "\e\e[D": backward-word
+
+# Search history with Up/Down
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+
+# Magic space
+Space: magic-space
+
+# ----------------------------------------------------------------------
+# Completions
+# ----------------------------------------------------------------------
 # ignore case for tab completion
 set completion-ignore-case on
-
-# show all suggestions after pressing tab once instead of twice
-set show-all-if-ambiguous on
 
 # complete fi|l to file.txt instead of file.txtl
 # fi|.txt is still completed to file.txt.txt
 # skip-completed-text was added in bash 4.1
 set skip-completed-text on
 
-# Second TAB For fill cycles through options
-"\t": menu-complete
+# show all suggestions after pressing tab once instead of twice
+set show-all-if-ambiguous on
 
-# option-left and option-right (OS X)
-# "\e\e[C": forward-word
-# "\e\e[D": backward-word
+# Completions in single line
+set completion-display-width 1
+
+# completions: / after dir, * after exec
+# set visible-stats on
+
+# Use C-k, C-j fill cycles through options after tab
+Control-k: menu-complete
+Control-j: menu-complete-backward

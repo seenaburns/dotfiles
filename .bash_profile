@@ -16,6 +16,12 @@ export GREP_COLOR='1;32'
 # Use Terminal's colors for emacs (Mac OS X)
 [[ "$OSTYPE" == "darwin"* ]] && export TERM='xterm-color'
 
+# Better Bash History
+shopt -s histappend # session appends not overwrites to history
+HISTFILESIZE=2000
+HISTSIZE=2000
+HISTCONTROL=ignoreboth # ignore dup commands, commands starting with space
+
 # ------------------------------------------------------
 #            Command Aliases / Functions
 # ------------------------------------------------------
