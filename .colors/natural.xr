@@ -1,0 +1,41 @@
+!! Version 0.1
+urxvt*background: #151A21
+urxvt*foreground: #1DB5A2
+urxvt*cursorColor: #1DB5A2
+
+!! black dark/light
+urxvt*color0: #25323A
+urxvt*color8: #25323A
+
+!! red dark/light
+urxvt*color1: #134F4B
+urxvt*color9: #134F4B
+
+!! green dark/light
+urxvt*color2: #B5E8DA
+urxvt*color10: #B5E8DA
+
+!! yellow dark/light
+urxvt*color3: #134F4B
+urxvt*color11: #134F4B
+
+!! blue dark/light
+urxvt*color4: #B5E8DA
+urxvt*color12: #B5E8DA
+
+!! magenta dark/light
+urxvt*color5: #25323A
+urxvt*color13: #25323A
+
+!! cyan dark/light
+urxvt*color6: #1DB5A2
+urxvt*color14: #1DB5A2
+
+!! white dark/light
+urxvt*color7: #1DB5A2
+urxvt*color15: #1DB5A2
+
+
+!! Dzen2
+dzen2.foreground: #1DB5A2
+dzen2.background: #151A21

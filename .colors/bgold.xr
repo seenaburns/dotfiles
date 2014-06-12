@@ -4,8 +4,8 @@ urxvt*foreground: #FFE9AD
 urxvt*cursorColor: #FFE9AD
 
 !! black dark/light
-urxvt*color0: #372840
-urxvt*color8: #483454
+urxvt*color0: #211915
+urxvt*color8: #2B211B
 
 !! red dark/light
 urxvt*color1: #F39241
