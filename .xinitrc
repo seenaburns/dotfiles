@@ -2,7 +2,7 @@
 xrdb -merge .Xresources
 
 # Background
-feh --bg-tile ~/Pictures/redfall.png
+feh --bg-fill ~/Pictures/naturalpalette2-2.png
 # xsetroot -solid "#050505"
 # mplayer -noconsolecontrols -rootwin -ss 15 -endpos 60 -vo gl -nosound -loop 60 ~/tmp/darklens.mp4 < /dev/null &
 
@@ -15,6 +15,11 @@ dispwin -d2 /usr/share/color/icc/dell_u2312hm_custom_color.icc
 # Include other font dirs
 xset +fp /usr/share/fonts/bitmap
 xset fp rehash
+
+# Stop sleep
+xset -dpms s off
+xset s off &
+xset s noblank &
 
 # Activate BSPWM Window Manager
 sxhkd &
