@@ -3,22 +3,42 @@
 # xrandr --output DVI-D-1 --off
 # xrandr --output DVI-I-1 --mode 1920x1200
 
-bspc monitor DVI-D-1 -n ALPHA -d i ii iii
-bspc monitor DVI-I-1 -n BETA -d I II III
+# Repeat for monitors
+for M in $(bspc quer -M); do
+    bspc config -m $M border_width 0
+done
 
-bspc config top_padding         18
-bspc config border_width        1
+# Repeat for desktops
+for d in $(bspc query -D); do
+    bspc config -d $d border_width 0
+    bspc config -d $d window_gap 12
+done
+
+PADDING=40
+
+bspc config border_width        0
+bspc config top_padding         58
+bspc config right_padding       $PADDING
+bspc config bottom_padding      $PADDING
+bspc config left_padding        $PADDING
 bspc config window_gap          12
 bspc config split_ratio         0.50
 bspc config borderless_monocle  true
 bspc config gapless_monocle     true
 
-bspc config normal_border_color "#FFAE4D"
-bspc config active_border_color "#FFAE4D"
-bspc config focused_border_color "#FFAE4D"
+bspc config normal_border_color "#151A21"
+bspc config active_border_color "#151A21"
+bspc config focused_border_color "#151A21"
+
+bspc monitor DVI-D-1 -n ALPHA -d IV V VI
+bspc monitor DVI-I-1 -n BETA -d I II III
 
 # Kill panel and start
-# if [ $(pgrep -f 'panel') ]; then
-#     kill $(pgrep -f 'panel' | head -1)
-# fi
+if [ $(pgrep 'panel') ]; then
+    pgrep 'panel' | xargs kill
+    pgrep 'panel' | xargs kill
+fi
+
 panel &
+info_panel.sh &
+

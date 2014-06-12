@@ -63,9 +63,9 @@ while read -r line ; do
                         # Append to wm*_infos
                         if [ "$monitor" = 'BETA' ];
                         then
-                            wm2_infos="${wm2_infos}^fg(${FG})^bg(${BG})${PADDING}•${PADDING}";
+                            wm2_infos="${wm2_infos}^fg(${FG})^bg(${BG})${PADDING}${name}${PADDING}";
                         else
-                            wm1_infos="${wm1_infos}^fg(${FG})^bg(${BG})${PADDING}•${PADDING}";
+                            wm1_infos="${wm1_infos}^fg(${FG})^bg(${BG})${PADDING}${name}${PADDING}";
                         fi
                         ;;
                     L*)
