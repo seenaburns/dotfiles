@@ -23,7 +23,7 @@
 ;; ------------------------------------------------------------
 ; Mode line color (fore <-> back for some reason)
 (set-face-attribute 'mode-line nil
-    :foreground "blue"
+    :foreground "yellow"
     :background "white")
 
 (setq-default mode-line-format
