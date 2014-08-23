@@ -1,10 +1,14 @@
+# Custom Prompt
+# Working directory, username, hostname if ssh
+# Bright blue for username, white for command
+if [ -n "$SSH_CLIENT" ]; then
+    PS1='\[\e[0;34m\]\u@\h :: \W/ ≫ \[\e[0m\]'
+else
+    PS1='\[\e[0;34m\]\u :: \W/ ≫ \[\e[0m\]'
+fi
+
 # Private for stuff not on github (if exists)
 [ -f ~/.bash_private ] && source ~/.bash_private
-
-# Custom Prompt
-# Working directory, username
-# Bright blue for username, white for command
-PS1='\[\e[0;34m\]\u :: \W/ ≫ \[\e[0m\]'
 
 # Colors for LS and Grep
 # LS Color
