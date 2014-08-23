@@ -45,3 +45,10 @@ alias tree="tree -L 2"
 # Emacs daemon
 export ALTERNATE_EDITOR=""
 alias emc='emacsclient -t'
+
+# Include local executables
+export PATH=$PATH:~/.local/bin
+
+# Include local for pythonpath
+export PYTHONPATH=$PYTHONPATH:~/.local/python
+
