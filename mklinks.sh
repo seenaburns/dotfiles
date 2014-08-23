@@ -40,3 +40,4 @@ checkedlink .emacs.d/bin
 checkedlink .inputrc
 checkedlink .tmux.conf
 checkedlink .vimrc
+checkedlink .vim

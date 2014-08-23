@@ -1,19 +1,23 @@
+execute pathogen#infect()
+
 set nocompatible
 
 syntax on
 filetype plugin indent on
 
+" Color Scheme
+colorscheme nnkd
+
 set showcmd         " Show command sequence as entering
 set ruler           " Show row / col
 
-" Dark Gray Line Numbers
+" Line Numbers
 set number
 set numberwidth=3
-highlight LineNr term=bold cterm=NONE ctermfg=yellow ctermbg=NONE gui=NONE guifg=yellow guibg=NONE
 
 " Leader key / remaps
 let mapleader = ","                             " Use , instead of \
-inoremap jj <Esc>                               " Use jj to exit insert
+inoremap jk <Esc>                               " Use jj to exit insert
 nmap <silent> ,/ :nohlsearch<CR>                " Clear search
 
 " Tabs / Spacing
@@ -43,3 +47,22 @@ set pastetoggle=<F2>
 
 " Hide rather than close files in background
 set hidden
+
+" Folding
+set foldmethod=indent
+set foldlevel=99
+
+" Python syntax
+let python_highlight_all = 1
+let python_highlight_space_errors = 0
+
+" ---------------------------------------------------------------------
+" EXTRA FUNCTIONS
+" ---------------------------------------------------------------------
+" Show highlighting gropus for current word
+function! SynStack()
+    if !exists("*synstack")
+        return
+    endif
+    echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
