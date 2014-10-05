@@ -56,6 +56,12 @@ set foldlevel=99
 let python_highlight_all = 1
 let python_highlight_space_errors = 0
 
+" Limit to 16 colors
+set t_Co=16
+
+" Toggle pastemode with F2
+set pastetoggle=<F2>
+
 " ---------------------------------------------------------------------
 " EXTRA FUNCTIONS
 " ---------------------------------------------------------------------
@@ -66,3 +72,4 @@ function! SynStack()
     endif
     echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
+
