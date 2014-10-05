@@ -2,7 +2,7 @@
 xrdb -merge .Xresources
 
 # Background
-feh --bg-fill ~/Pictures/naturalpalette2-2.png
+eval $(cat ~/.fehbg)
 # xsetroot -solid "#050505"
 # mplayer -noconsolecontrols -rootwin -ss 15 -endpos 60 -vo gl -nosound -loop 60 ~/tmp/darklens.mp4 < /dev/null &
 
