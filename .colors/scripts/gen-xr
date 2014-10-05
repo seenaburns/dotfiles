@@ -4,8 +4,9 @@
 # Usage
 usage () {
     echo -e "Usage:"
-    echo -e "  ./gen-xr [theme-sh] > [theme-xr]"
+    echo -e "  ./gen-xr [theme-name]"
     echo -e "  Produces Xresources theme file from the shell version with variables"
+    echo -e "  Reads from [theme-name].sh and outputs to [theme-name].xr"
 }
 
 if [ "$1" == "-h" ]; then
@@ -26,7 +27,7 @@ fi
 XR_TEMPLATE=~/.colors/scripts/xr-template
 
 # Import sh theme
-SH_THEME=$1
+SH_THEME=$1.sh
 source $SH_THEME
 
 # Start replacing xr theme
@@ -59,7 +60,7 @@ XR_OUT=$(echo -e "$XR_OUT" | sed "s/COLOR_CYAN_LIGHT/$COLOR_CYAN_LIGHT/g")
 XR_OUT=$(echo -e "$XR_OUT" | sed "s/COLOR_WHITE_DARK/$COLOR_WHITE_DARK/g")
 XR_OUT=$(echo -e "$XR_OUT" | sed "s/COLOR_WHITE_LIGHT/$COLOR_WHITE_LIGHT/g")
 
-echo -e "$XR_OUT"
+echo -e "$XR_OUT" > $1.xr
 
 # urxvt*background: COLOR_BACKGROUND
 # urxvt*foreground: COLOR_FOREGROUND
