@@ -7,7 +7,7 @@
 source ~/.colors/current-sh
 
 # General
-DELAY="2"
+DELAY=0.3
 PADDING="30"
 HALF_PADDING="15"
 
@@ -41,23 +41,11 @@ volume()
 
 downspeed()
 {
-    rx1=$(cat /sys/class/net/wlan0/statistics/rx_bytes)
-    sleep $DELAY
-    rx2=$(cat /sys/class/net/wlan0/statistics/rx_bytes)
-    rxdiff=$(echo "$rx2 - $rx1" | bc -l)
-    rxtrue=$(echo "$rxdiff/1024/$DELAY" | bc -l)
-
-    printf "DOWN %.0f kb/s\n" "$rxtrue"
+    cat /tmp/downspeed;
 }
 upspeed()
 {
-    tx1=$(cat /sys/class/net/wlan0/statistics/tx_bytes)
-    sleep $DELAY
-    tx2=$(cat /sys/class/net/wlan0/statistics/tx_bytes)
-    txdiff=$(echo "$tx2 - $tx1" | bc -l)
-    txtrue=$(echo "$txdiff/1024/$DELAY" | bc -l)
-
-    printf "UP %.0f kb/s\n" "$txtrue"
+    cat /tmp/upspeed;
 }
 
 sync()
@@ -74,6 +62,11 @@ sync()
     fi
 }
 
+# Start widgets (close if already opened)
+pgrep 'downspeed.sh' | xargs kill
+pgrep 'upspeed.sh' | xargs kill
+nohup ~/.config/bspwm/panel/info_widgets/downspeed.sh >/dev/null 2>&1 &
+nohup ~/.config/bspwm/panel/info_widgets/upspeed.sh >/dev/null 2>&1 &
 
 # LOOP EXECUTION (indefinitely)
 SPACER="^p($HALF_PADDING)|^p($HALF_PADDING)"
@@ -88,5 +81,5 @@ do
     echo -n "$SPACER"
     echo -n "$(titleclock)"
     echo "^p($HALF_PADDING)"
-    # sleep $DELAY
+    sleep $DELAY
 done | dzen2 -h "18" -ta r -fn "$FONT" -bg "$DZEN_BG" -fg "$DZEN_FG" -w "$INFO_W" -x "$INFO_OFF"
