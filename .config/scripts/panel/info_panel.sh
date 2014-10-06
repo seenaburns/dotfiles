@@ -22,7 +22,7 @@ FONT="uushi:size=8"
 
 SCREEN_W=$(xdpyinfo | grep 'dimensions' | grep -o '[0-9]*' | head -1);
 SP_W=120;
-INFO_W=$[ $SCREEN_W - $SP_W ];
+INFO_W=$[ $SCREEN_W - $SP_W - 1920 ];
 INFO_OFF=$[ $SCREEN_W - $INFO_W ];
 
 gdbar() {
