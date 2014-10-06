@@ -27,7 +27,7 @@ case "$flavor" in
         cat "$PANEL_FIFO" | \
             panel_dzen2 -o 1920 -f "$FONT_FAMILY" -s "$FONT_SIZE" | \
             tee >(sh ~/.config/bspwm/panel/split_panel.sh 1 1920 0) | \
-            sh ~/.config/bspwm/panel/split_panel.sh 2 1220 1920
+            sh ~/.config/bspwm/panel/split_panel.sh 2 120 1920
         ;;
 esac
 

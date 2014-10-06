@@ -20,6 +20,11 @@ BAR_FG=$COLOR_BLUE_DARK
 BAR_W="75"
 FONT="uushi:size=8"
 
+SCREEN_W=$(xdpyinfo | grep 'dimensions' | grep -o '[0-9]*' | head -1);
+SP_W=120;
+INFO_W=$[ $SCREEN_W - $SP_W ];
+INFO_OFF=$[ $SCREEN_W - $INFO_W ];
+
 gdbar() {
     echo $2 | dzen-gdbar -l "$1 " -bg "$BAR_BG" -fg "$BAR_FG" -w "$BAR_W" -h "6" -s o;
 }
@@ -69,6 +74,7 @@ sync()
     fi
 }
 
+
 # LOOP EXECUTION (indefinitely)
 SPACER="^p($HALF_PADDING)|^p($HALF_PADDING)"
 while :;
@@ -83,4 +89,4 @@ do
     echo -n "$(titleclock)"
     echo "^p($HALF_PADDING)"
     # sleep $DELAY
-done | dzen2 -h "18" -ta r -fn "$FONT" -bg "$DZEN_BG" -fg "$DZEN_FG" -w "700" -x "3140"
+done | dzen2 -h "18" -ta r -fn "$FONT" -bg "$DZEN_BG" -fg "$DZEN_FG" -w "$INFO_W" -x "$INFO_OFF"
