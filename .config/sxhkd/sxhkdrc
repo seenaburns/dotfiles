@@ -76,7 +76,7 @@ super + Return
     urxvt
 
 super + space
-    ~/.config/sxhkd/scripts/dmenu.sh
+    dmenu.sh
 
 # make sxhkd reload its configuration files:
 super + Escape
