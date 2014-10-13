@@ -87,7 +87,7 @@ F11
     amixer -q sset 'Master' 1%-
 
 F12
-    amixer -q sset 'Master' 1%
+    amixer -q sset 'Master' 1%+
 
 # Screen rotate
 super + F15
