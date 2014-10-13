@@ -18,7 +18,7 @@ BAR_BG=$COLOR_BLACK_DARK
 BAR_FG=$COLOR_BLUE_DARK
 
 BAR_W="75"
-FONT="uushi:size=8"
+FONT="lemon:size=8"
 
 SCREEN_W=$(xdpyinfo | grep 'dimensions' | grep -o '[0-9]*' | head -1);
 SP_W=120;

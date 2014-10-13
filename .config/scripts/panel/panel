@@ -12,13 +12,13 @@ trap 'trap - TERM; kill 0' INT TERM QUIT EXIT
 # flavor=${1:-bar}
 flavor=${1:-dzen2}
 
-PANEL_HEIGHT=14
+PANEL_HEIGHT=8
 
 # bspc config top_padding $PANEL_HEIGHT
 # bspc control --put-status
 bspc control --subscribe > "$PANEL_FIFO" &
-xtitle -sf 'T%s' > "$PANEL_FIFO" &
-clock -sf 'S%a %H:%M' > "$PANEL_FIFO" &
+# xtitle -sf 'T%s' > "$PANEL_FIFO" &
+# clock -sf 'S%a %H:%M' > "$PANEL_FIFO" &
 
 case "$flavor" in
     dzen2)
