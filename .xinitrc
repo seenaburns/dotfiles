@@ -9,8 +9,8 @@ eval $(cat ~/.fehbg)
 # Calibrate monitor
 # xcalib -d :0 /usr/share/color/icc/dell_u2412m_standard.icc
 # xcalib -d :1 /usr/share/color/icc/dell_u2412m_standard.icc
-dispwin -d1 /usr/share/color/icc/dell_u2412m_standard.icc
-dispwin -d2 /usr/share/color/icc/dell_u2312hm_custom_color.icc
+# dispwin -d1 /usr/share/color/icc/dell_u2412m_standard.icc
+# dispwin -d2 /usr/share/color/icc/dell_u2312hm_custom_color.icc
 
 # Include other font dirs
 xset +fp /usr/share/fonts/bitmap

@@ -1,4 +1,4 @@
-#include "/home/seena/.colors/current-xr"
+#include "/home/nnkd/.colors/current-xr"
 
 ! Xresources
 
@@ -15,16 +15,23 @@ URxvt.scrollBar: false
 ! URxvt.font: -*-lemon-*-*-*-*-*-*-*-*-*-*-*-*
 ! URxvt.font: xft:monaco:size=10
 ! URxvt.font: xft:uushi:pixelsize=10:antialias=false:hinting=true
-URxvt*font: xft:lemon:pixelsize=10:antialias=false:hinting=true
-URxvt*boldFont: xft:lemon:pixelsize=10:antialias=false:hinting=true
+
+! URxvt.font: xft:fira mono:style=Medium:size=8
+! URxvt.boldFont: xft:fira mono:style=Medium:size=8
+! URxvt.font: xft:Inconsolata:style=Medium:size=8
+! URxvt.boldFont: xft:Inconsolata:style=Medium:size=8
+URxvt.font: xft:lemon:pixelsize=10
+URxvt.boldFont: xft:lemon:pixelsize=10
+! URxvt.font: xft:envypn:pixelsize=13
+!URxvt.boldFont: xft:lemon:pixelsize=10:antialias=false:hinting=true
 
 ! URxvt.letterSpace:   -3
 
-Xft.dpi: 96
-Xft.autohint: true
-Xft.antialias: false
-Xft.hinting: true
-Xft.hintstyle: hintslight
+! Xft.dpi: 96
+! Xft.autohint: true
+! Xft.antialias: true
+! Xft.hinting: true
+! Xft.hintstyle: hintslight
 
 ! urxvt*transparent: true
 ! urxvt*shading: 10
