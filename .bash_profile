@@ -2,9 +2,9 @@
 # Working directory, username, hostname if ssh
 # Bright blue for username, white for command
 if [ -n "$SSH_CLIENT" ]; then
-    PS1='\[\e[0;34m\]\u@\h :: \W/ ≫ \[\e[0m\]'
+    PS1='\[\e[0;34m\]\u@\h :: \W/ > \[\e[0m\]'
 else
-    PS1='\[\e[0;34m\]\u :: \W/ ≫ \[\e[0m\]'
+    PS1='\[\e[0;34m\]\u :: \W/ > \[\e[0m\]'
 fi
 
 # Private for stuff not on github (if exists)
