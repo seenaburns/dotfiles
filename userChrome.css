@@ -1,0 +1,75 @@
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"); /* set default namespace to XUL */
+
+/* Completely hide tab bar */
+/*#TabsToolbar {display:none !important;}*/
+
+/* Nav bar settings */
+#nav-bar {
+    background-color: #f5f5f5 !important;
+    border: none !important;
+}
+#urlbar {
+    font-family: "uushi", monospace;
+    font-size: 10px;
+
+    -moz-appearance: none !important;
+    background-color: #f5f5f5 !important;
+    color: #777777 !important;
+    border: 1px #aaa solid !important;
+    margin-left: 15px !important;
+    padding: 3px !important;
+    border-radius: 0px !important;
+}
+#back-button, #forward-button, #reload-button, #back-forward-dropmarker,
+#abp-toolbarbutton,
+#identity-box, #urlbar-reload-button, #urlbar-stop-button, #urlbar-go-button, #notification-popup-box
+{
+    display: none !important;
+}
+
+/* Hide scrollbars */
+#content browser {
+    margin-right: -14px !important;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+/* TABS: help from http://twily.info/firefox/firefox-css */
+#TabsToolbar, #tabbrowser-tabs {
+    min-height: 20px !important;
+    max-height: 20px !important;
+    background: #f5f5f5 !important;
+    border: none !important;
+}
+
+/* Make tabs 30px-100% size */
+.tabbrowser-tab { min-width: 30px !important; max-width: 100px !important; }
+
+/* Tab settings */
+tab {
+    font-family: "uushi", monospace !important;
+    min-height: 15px !important;
+    max-height: 15px !important;
+    color: #777 !important;
+    font-size: 10px !important;
+    text-shadow: none !important;
+    text-align: center !important; 
+    background: #f5f5f5 !important;
+}
+/* Clear some tab settings */
+.tabbrowser-tab *, .tabs-newtab-button * {
+    background: none !important;
+    list-style-image: none !important;
+    margin: 0 0 0 0 !important;
+    padding: 2px 0px 0px 0px !important;
+    -moz-appearance: none !important;
+}
+.tabbrowser-tab[selected="true"] .tab-stack {
+    color: #222 !important;
+}
+/* Hide seperator bar */
+#TabsToolbar::after { display: none !important; }
+.tabbrowser-tab::before, .tabbrowser-tab::after { background: none !important; }
+/* Remove images */
+.tabs-newtab-button, .tab-close-button, .tab-close, .tab-throbber, .tab-icon-image:not([pinned]), .tab-background-start, .tab-background-end { display: none !important; }
+
