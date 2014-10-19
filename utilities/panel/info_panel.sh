@@ -65,8 +65,8 @@ sync()
 # Start widgets (close if already opened)
 pgrep 'downspeed.sh' | xargs kill
 pgrep 'upspeed.sh' | xargs kill
-nohup ~/.config/bspwm/panel/info_widgets/downspeed.sh >/dev/null 2>&1 &
-nohup ~/.config/bspwm/panel/info_widgets/upspeed.sh >/dev/null 2>&1 &
+nohup ~/util/panel/info_widgets/downspeed.sh >/dev/null 2>&1 &
+nohup ~/util/panel/info_widgets/upspeed.sh >/dev/null 2>&1 &
 
 # LOOP EXECUTION (indefinitely)
 SPACER="^p($HALF_PADDING)|^p($HALF_PADDING)"
