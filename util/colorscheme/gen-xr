@@ -24,7 +24,7 @@ fi
 #
 
 # Variables
-XR_TEMPLATE=~/.colors/scripts/xr-template
+XR_TEMPLATE=~/util/colorscheme/xr-template
 
 # Import sh theme
 SH_THEME=$1.sh

@@ -32,8 +32,8 @@ urxvt*color6: #C12423
 urxvt*color14: #C12423
 
 !! white dark/light
-urxvt*color7: #C12423
-urxvt*color15: #C12423
+urxvt*color7: #FC1919
+urxvt*color15: #FC1919
 
 
 !! Dzen2
