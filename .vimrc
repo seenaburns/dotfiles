@@ -5,11 +5,26 @@ set nocompatible
 syntax on
 filetype plugin indent on
 
+" Plugins
+" neocomplcache
+let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_auto_completion_start_length = 3
+let g:neocomplcache_max_list = 10
+" let g:neocomplcache_min_syntax_length = 3
+let g:neocomplcache_enable_ignore_case = 1
+set completeopt+=longest
+set completeopt-=preview
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" inoremap <expr><C-g>     neocomplcache#undo_completion()
+" inoremap <expr><C-l>     neocomplcache#complete_common_string()
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+
 " Color Scheme
 colorscheme nnkd
 
 set showcmd         " Show command sequence as entering
 set ruler           " Show row / col
+" set cursorline      " Show line with cursor
 
 " Line Numbers
 set number
