@@ -84,10 +84,10 @@ super + Escape
 
 # Sound
 F11
-    amixer -q sset 'Master' 1%-
+    amixer -q sset 'Master' 2%-
 
 F12
-    amixer -q sset 'Master' 1%+
+    amixer -q sset 'Master' 2%+
 
 # Screen rotate
 super + F15
