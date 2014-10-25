@@ -9,7 +9,7 @@
     border: none !important;
 }
 #urlbar {
-    font-family: "uushi", monospace;
+    font-family: monospace;
     font-size: 10px;
 
     -moz-appearance: none !important;
