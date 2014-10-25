@@ -37,10 +37,10 @@ nmap <silent> ,/ :nohlsearch<CR>                " Clear search
 
 " Tabs / Spacing
 set nowrap          " Don't wrap lines
-set tabstop=4       " Hard tabstop is 4 spaces
-set shiftwidth=4    " Spaces for autoindent
+set tabstop=2       " Hard tabstop is 4 spaces
+set shiftwidth=2    " Spaces for autoindent
 set smarttab        " Use shiftwidth not tabstoset smarttab at start
-set softtabstop=4   " Combination of spaces/tabs to simulate tabstops
+set softtabstop=2   " Combination of spaces/tabs to simulate tabstops
 set expandtab       " always use spaces instead of tab characters
 set autoindent      " always set autoindenting on
 set copyindent      " copy the previous indentation on autoindenting
