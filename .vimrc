@@ -5,6 +5,9 @@ set nocompatible
 syntax on
 filetype plugin indent on
 
+" Limit to 16 colors
+set t_Co=16
+
 " Plugins
 " neocomplcache
 let g:neocomplcache_enable_at_startup = 1
@@ -18,6 +21,20 @@ inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " inoremap <expr><C-g>     neocomplcache#undo_completion()
 " inoremap <expr><C-l>     neocomplcache#complete_common_string()
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+" Airline
+set laststatus=2 " statusline with one file
+let g:airline#extensions#tabline#enabled = 1 " top bar
+let g:airline_theme = "monochrome"
+let g:airline_left_sep = '' " Straight separator
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline#extensions#tabline#left_sep = ''
+let g:airline#extensions#tabline#left_alt_sep = ''
+let g:airline#extensions#tabline#right_sep = ''
+let g:airline#extensions#tabline#right_alt_sep = ''
+" Unite
+
 
 " Color Scheme
 colorscheme nnkd
@@ -70,9 +87,6 @@ set foldlevel=99
 " Python syntax
 let python_highlight_all = 1
 let python_highlight_space_errors = 0
-
-" Limit to 16 colors
-set t_Co=16
 
 " Toggle pastemode with F2
 set pastetoggle=<F2>
