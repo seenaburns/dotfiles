@@ -11,21 +11,30 @@ dzen2.font: xft:lemon:pixelsize=8:antialias=false:hinting=true
 ! dzen2.background: black
 
 ! URxvt Settings
-URxvt.scrollBar: false 
+URxvt.scrollBar: false
 ! URxvt.font: -*-lemon-*-*-*-*-*-*-*-*-*-*-*-*
 ! URxvt.font: xft:monaco:size=10
 ! URxvt.font: xft:uushi:pixelsize=10:antialias=false:hinting=true
 
-! URxvt.font: xft:fira mono:style=Medium:size=8
-! URxvt.boldFont: xft:fira mono:style=Medium:size=8
+! TTF Fonts
+! URxvt.font: xft:fira mono:style=Medium:pixelsize=10
+! URxvt.boldFont: xft:fira mono:style=Medium:pixelsize=10
+! URxvt.font: xft:Droid Sans Mono:size=8
+! URxvt.boldFont: xft:Droid Sans Mono:size=8
+! URxvt.font: xft:Inconsolata:pixelsize=12
+! URxvt.boldFont: xft:Inconsolata:pixelsize=12
+! URxvt.font: xft:Source Code Pro:style=Regular:size=8
+! URxvt.boldFont: xft:Source Code Pro:style=Regular:size=8
+URxvt.letterSpace:   0
+
 ! URxvt.font: xft:Inconsolata:style=Medium:size=8
 ! URxvt.boldFont: xft:Inconsolata:style=Medium:size=8
 URxvt.font: xft:lemon:pixelsize=10
 URxvt.boldFont: xft:lemon:pixelsize=10
 ! URxvt.font: xft:envypn:pixelsize=13
+! URxvt.boldFont: xft:envypn:pixelsize=13
 !URxvt.boldFont: xft:lemon:pixelsize=10:antialias=false:hinting=true
 
-! URxvt.letterSpace:   -3
 
 ! Xft.dpi: 96
 ! Xft.autohint: true
@@ -37,4 +46,9 @@ URxvt.boldFont: xft:lemon:pixelsize=10
 ! urxvt*shading: 10
 
 urxvt.internalBorder: 10
+
+! URxvt clickable links
+URxvt.perl-ext-common: default,matcher
+URxvt.url-launcher: /usr/bin/firefox
+URxvt.matcher.button: 1
 
