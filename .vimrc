@@ -1,4 +1,5 @@
 execute pathogen#infect()
+Helptags
 
 set nocompatible
 
@@ -7,6 +8,10 @@ filetype plugin indent on
 
 " Limit to 16 colors
 set t_Co=16
+
+" Leader key / remaps
+let mapleader = ","                             " Use , instead of \
+inoremap jk <Esc>                               " Use jj to exit insert
 
 " Plugins
 " neocomplcache
@@ -22,8 +27,9 @@ inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " inoremap <expr><C-l>     neocomplcache#complete_common_string()
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 " Airline
-set laststatus=2 " statusline with one file
+set laststatus=3 " statusline with one file
 let g:airline#extensions#tabline#enabled = 1 " top bar
+let g:airline#extensions#tabline#fnamemod = ':t' " just show filename
 let g:airline_theme = "monochrome"
 let g:airline_left_sep = '' " Straight separator
 let g:airline_left_alt_sep = ''
@@ -34,6 +40,13 @@ let g:airline#extensions#tabline#left_alt_sep = ''
 let g:airline#extensions#tabline#right_sep = ''
 let g:airline#extensions#tabline#right_alt_sep = ''
 " Unite
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+let g:unite_source_history_yank_enable = 1
+noremap <leader>f : <C-u>Unite -start-insert file<CR>
+nnoremap <leader>F :<C-u>Unite -start-insert file_rec<CR>
+noremap <leader>b : <C-u>Unite buffer<CR>
+nnoremap <leader>y :<C-u>Unite history/yank<CR>
+nnoremap <silent><leader>ll :<C-u>UniteResume<CR>
 
 
 " Color Scheme
@@ -47,10 +60,12 @@ set ruler           " Show row / col
 set number
 set numberwidth=3
 
-" Leader key / remaps
-let mapleader = ","                             " Use , instead of \
-inoremap jk <Esc>                               " Use jj to exit insert
 nmap <silent> ,/ :nohlsearch<CR>                " Clear search
+
+" Buffers as tabs
+nmap <leader>l :bnext<CR>
+nmap <leader>h :bprevious<CR>
+nmap <leader>bq :bp <BAR> bd #<CR>
 
 " Tabs / Spacing
 set nowrap          " Don't wrap lines
