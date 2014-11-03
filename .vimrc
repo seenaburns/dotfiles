@@ -47,6 +47,7 @@ nnoremap <leader>F :<C-u>Unite -start-insert file_rec<CR>
 noremap <leader>b : <C-u>Unite buffer<CR>
 nnoremap <leader>y :<C-u>Unite history/yank<CR>
 nnoremap <silent><leader>ll :<C-u>UniteResume<CR>
+" C-g to exit
 
 
 " Color Scheme
