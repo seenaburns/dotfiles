@@ -2,8 +2,8 @@
 xrdb -merge .Xresources
 
 # Background
-eval $(cat ~/.fehbg)
-# xsetroot -solid "#050505"
+# eval $(cat ~/.fehbg)
+xsetroot -solid "#111"
 # mplayer -noconsolecontrols -rootwin -ss 15 -endpos 60 -vo gl -nosound -loop 60 ~/tmp/darklens.mp4 < /dev/null &
 
 # Calibrate monitor
