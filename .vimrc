@@ -27,9 +27,10 @@ inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " inoremap <expr><C-l>     neocomplcache#complete_common_string()
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 " Airline
-set laststatus=3 " statusline with one file
+set laststatus=2 " statusline with one file
 let g:airline#extensions#tabline#enabled = 1 " top bar
 let g:airline#extensions#tabline#fnamemod = ':t' " just show filename
+let g:airline#extensions#syntastic#enabled = 1
 let g:airline_theme = "monochrome"
 let g:airline_left_sep = '' " Straight separator
 let g:airline_left_alt_sep = ''
@@ -48,6 +49,9 @@ noremap <leader>b : <C-u>Unite buffer<CR>
 nnoremap <leader>y :<C-u>Unite history/yank<CR>
 nnoremap <silent><leader>ll :<C-u>UniteResume<CR>
 " C-g to exit
+" Syntastic
+let g:syntastic_check_on_open=1
+let g:syntastic_enable_signs=1
 
 
 " Color Scheme
