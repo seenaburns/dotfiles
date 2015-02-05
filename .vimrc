@@ -52,6 +52,7 @@ nnoremap <silent><leader>ll :<C-u>UniteResume<CR>
 " Syntastic
 let g:syntastic_check_on_open=1
 let g:syntastic_enable_signs=1
+let g:syntastic_cpp_remove_include_errors = 1 " silence for openframeworks
 
 
 " Color Scheme
@@ -70,7 +71,7 @@ nmap <silent> ,/ :nohlsearch<CR>                " Clear search
 " Buffers as tabs
 nmap <leader>l :bnext<CR>
 nmap <leader>h :bprevious<CR>
-nmap <leader>bq :bp <BAR> bd #<CR>
+nmap <leader>q :bp <BAR> bd #<CR>
 
 " Tabs / Spacing
 set nowrap          " Don't wrap lines
@@ -107,6 +108,10 @@ set foldlevel=99
 " Python syntax
 let python_highlight_all = 1
 let python_highlight_space_errors = 0
+
+" GLSL syntax
+autocmd BufNewFile,BufRead *.frag   set syntax=c
+autocmd BufNewFile,BufRead *.vert   set syntax=c
 
 " Toggle pastemode with F2
 set pastetoggle=<F2>
