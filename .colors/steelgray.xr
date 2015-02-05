@@ -1,5 +1,5 @@
 !! Version 0.1
-urxvt*background: #111111
+urxvt*background: #0a0a0a
 urxvt*foreground: #AAAAAA
 urxvt*cursorColor: #AAAAAA
 
@@ -38,4 +38,4 @@ urxvt*color15: #FFFFFF
 
 !! Dzen2
 dzen2.foreground: #AAAAAA
-dzen2.background: #111111
+dzen2.background: #0a0a0a
