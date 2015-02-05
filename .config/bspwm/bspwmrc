@@ -2,31 +2,26 @@
 
 source ~/.colors/current-sh
 
-# xrandr --output DVI-D-1 --off
-# xrandr --output DVI-I-1 --mode 1920x1200
+# Padding to force to center
+bspc config top_padding 190
+bspc config right_padding 430
+bspc config bottom_padding 415
+bspc config left_padding 430
+bspc config border_width 1
 
-# Repeat for monitors
-# for M in $(bspc quer -M); do
-#     bspc config -m $M border_width 0
-# done
+# Normal Padding
+# PADDING=40
+# bspc config top_padding         58
+# bspc config right_padding       $PADDING
+# bspc config bottom_padding      $PADDING
+# bspc config left_padding        $PADDING
 
-# Repeat for desktops
-# for d in $(bspc query -D); do
-#     bspc config -d $d border_width 0
-#     bspc config -d $d window_gap 12
-# done
-
-PADDING=40
-bspc config top_padding         58
-bspc config right_padding       $PADDING
-bspc config bottom_padding      $PADDING
-bspc config left_padding        $PADDING
 bspc config window_gap          12
 bspc config split_ratio         0.50
 bspc config borderless_monocle  true
 bspc config gapless_monocle     true
 
-bspc config border_width        1
+# bspc config border_width        1
 bspc config normal_border_color $COLOR_BACKGROUND 
 bspc config active_border_color $COLOR_BACKGROUND
 bspc config focused_border_color $COLOR_MAGENTA_DARK
@@ -39,6 +34,6 @@ if [ $(pgrep 'panel') ]; then
     pgrep 'panel' | xargs kill -s 9
 fi
 
-panel &
-info_panel.sh &
+# panel &
+# info_panel.sh &
 
