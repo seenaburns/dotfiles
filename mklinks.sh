@@ -34,10 +34,11 @@ srcdir=~/.dotfiles
 destdir=~
 
 checkedlink .bash_profile
-checkedlink .emacs
-checkedlink .emacs.d/config
-checkedlink .emacs.d/bin
+# checkedlink .emacs
+# checkedlink .emacs.d/config
+# checkedlink .emacs.d/bin
 checkedlink .inputrc
 checkedlink .tmux.conf
 checkedlink .vimrc
 checkedlink .vim
+checkedlink .config/nvim/init.vim

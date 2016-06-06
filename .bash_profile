@@ -11,26 +11,24 @@ fi
 [ -f ~/.bash_private ] && source ~/.bash_private
 
 # Colors for LS and Grep
-# LS Color
-export CLICOLOR=1
-# GREP Color
+export CLICOLOR=1 # LS Color
 export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='1;32'
 
-# Use Terminal's colors for emacs (Mac OS X)
-[[ "$OSTYPE" == "darwin"* ]] && export TERM='xterm-color'
-
 # Better Bash History
 shopt -s histappend # session appends not overwrites to history
-HISTFILESIZE=2000
-HISTSIZE=2000
+HISTFILESIZE=10000
+HISTSIZE=10000
 HISTCONTROL=ignoreboth # ignore dup commands, commands starting with space
 
 # ------------------------------------------------------
-#            Command Aliases / Functions
+#            OSX Only
 # ------------------------------------------------------
-# la: display files as list, hidden files, human-readable form
-alias la="ls -lah"
+# Use Terminal's colors for emacs (Mac OS X)
+[[ "$OSTYPE" == "darwin"* ]] && export TERM='xterm-256color'
+
+# Disable brew analytics
+[[ "$OSTYPE" == "darwin"* ]] && export HOMEBREW_NO_ANALYTICS=1
 
 # pbcopy / pbpaste for OSX clipboard
 if [[ "$OSTYPE" == "darwin"* ]]
@@ -39,16 +37,15 @@ then
     alias pc=pbcopy
 fi
 
-# tree: show tree, limit level to 2 automatically
-alias tree="tree -L 2"
-
-# Emacs daemon
-export ALTERNATE_EDITOR=""
-alias emc='emacsclient -t'
+# ------------------------------------------------------
+#            Command Aliases / Functions
+# ------------------------------------------------------
+alias la="ls -lah"
+alias igrep="grep -ir"
+alias aliases="cat ~/.bash_private ~/.bash_profile | grep '^alias\|^function'";
 
 # Include local executables
 export PATH=$PATH:~/.local/bin
 
 # Include local for pythonpath
 export PYTHONPATH=$PYTHONPATH:~/.local/python
-

@@ -7,7 +7,9 @@
 "\e[B": history-search-forward
 
 # Magic space
-Space: magic-space
+$if Bash
+  Space: magic-space
+$endif
 
 # ----------------------------------------------------------------------
 # Completions

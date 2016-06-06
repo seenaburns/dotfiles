@@ -1,5 +1,6 @@
 #!/bin/sh
 # Preprocess for LESS, makes it highlight syntax
+# Requires Pygments
 
 case "$1" in
    # add all extensions you want to handle here

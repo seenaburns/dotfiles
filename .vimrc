@@ -1,10 +1,28 @@
-execute pathogen#infect()
-Helptags
-
 set nocompatible
+filetype off
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" " alternatively, pass a path where Vundle should install plugins
+" "call vundle#begin('~/some/path/here')
+
+Plugin 'bling/vim-airline'
+Plugin 'shougo/unite'
+Plugin 'shougo/neocomplcache'
+Plugin 'derekwyatt/vim-scala'
+Plugin 'justinmk/vim-sneak'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+" execute pathogen#infect()
+" Helptags
 
 syntax on
-filetype plugin indent on
+" Color Scheme
+colorscheme elflord
 
 " Limit to 16 colors
 set t_Co=16
@@ -18,6 +36,7 @@ inoremap jk <Esc>                               " Use jj to exit insert
 let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_auto_completion_start_length = 3
 let g:neocomplcache_max_list = 10
+hi Pmenu ctermbg=15
 " let g:neocomplcache_min_syntax_length = 3
 let g:neocomplcache_enable_ignore_case = 1
 set completeopt+=longest
@@ -30,7 +49,7 @@ autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 set laststatus=2 " statusline with one file
 let g:airline#extensions#tabline#enabled = 1 " top bar
 let g:airline#extensions#tabline#fnamemod = ':t' " just show filename
-let g:airline#extensions#syntastic#enabled = 1
+" let g:airline#extensions#syntastic#enabled = 1
 let g:airline_theme = "monochrome"
 let g:airline_left_sep = '' " Straight separator
 let g:airline_left_alt_sep = ''
@@ -41,22 +60,20 @@ let g:airline#extensions#tabline#left_alt_sep = ''
 let g:airline#extensions#tabline#right_sep = ''
 let g:airline#extensions#tabline#right_alt_sep = ''
 " Unite
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-let g:unite_source_history_yank_enable = 1
-noremap <leader>f : <C-u>Unite -start-insert file<CR>
-nnoremap <leader>F :<C-u>Unite -start-insert file_rec<CR>
-noremap <leader>b : <C-u>Unite buffer<CR>
-nnoremap <leader>y :<C-u>Unite history/yank<CR>
-nnoremap <silent><leader>ll :<C-u>UniteResume<CR>
+" call unite#filters#matcher_default#use(['matcher_fuzzy'])
+" let g:unite_source_history_yank_enable = 1
+" noremap <leader>f : <C-u>Unite -start-insert file<CR>
+" nnoremap <leader>F :<C-u>Unite -start-insert file_rec<CR>
+" noremap <leader>b : <C-u>Unite buffer<CR>
+" nnoremap <leader>y :<C-u>Unite history/yank<CR>
+" nnoremap <silent><leader>ll :<C-u>UniteResume<CR>
 " C-g to exit
 " Syntastic
-let g:syntastic_check_on_open=1
-let g:syntastic_enable_signs=1
-let g:syntastic_cpp_remove_include_errors = 1 " silence for openframeworks
+" let g:syntastic_check_on_open=1
+" let g:syntastic_enable_signs=1
+" let g:syntastic_cpp_remove_include_errors = 1 " silence for openframeworks
 
 
-" Color Scheme
-colorscheme nnkd
 
 set showcmd         " Show command sequence as entering
 set ruler           " Show row / col
