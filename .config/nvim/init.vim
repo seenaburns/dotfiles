@@ -25,6 +25,11 @@ call plug#end()
 " Leader key
 let mapleader = ","
 
+" Custom
+source ~/.config/nvim/custom/functions.vim
+nnoremap <leader>t :call ToggleTodo()<cr>
+vnoremap <leader>t :call ToggleTodo()<cr>
+
 " airline
 set laststatus=2
 let g:airline_left_sep=""
@@ -136,6 +141,9 @@ set background=dark
 hi MatchParen cterm=none ctermbg=none ctermfg=red
 hi Pmenu ctermbg=black ctermfg=white
 
+" Automatic syntax highlighting for files
+au BufRead,BufNewFile *.txt     set filetype=markdown
+
 " utf-8 ftw
 set encoding=utf-8
 
@@ -150,4 +158,4 @@ autocmd BufWinLeave * call clearmatches()
 
 " wrap textlines
 " set colorcolumn=121
-set textwidth=120
+" set textwidth=120

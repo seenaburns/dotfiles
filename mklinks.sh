@@ -42,3 +42,5 @@ checkedlink .tmux.conf
 checkedlink .vimrc
 checkedlink .vim
 checkedlink .config/nvim/init.vim
+checkedlink .config/nvim/custom/functions.vim
+
