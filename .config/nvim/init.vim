@@ -19,6 +19,8 @@ Plug 'tomtom/tcomment_vim' " gc comments
 
 " Scala plugins
 Plug 'derekwyatt/vim-scala'
+" Haskell Plugins
+Plug 'neovimhaskell/haskell-vim'
 
 call plug#end()
 
@@ -36,7 +38,8 @@ let g:airline_left_sep=""
 let g:airline_left_alt_sep="|"
 let g:airline_right_sep=""
 let g:airline_right_alt_sep="|"
-let g:airline_theme="luna"
+source ~/.config/nvim/custom/custom-airline.vim
+let g:airline_theme="customairline"
 
 " arrow keys disable
 nnoremap <right> <nop>
@@ -72,10 +75,33 @@ inoremap []     []
 
 " CtrlP
 let g:ctrlp_by_filename=1
-let g:ctrlp_custom_ignore={"dir": "target"}
+" let g:ctrlp_custom_ignore={"dir": "target"}
 let g:ctrlp_map="<leader>e"
 let g:ctrlp_root_markers = ['build.sbt']
 nnoremap <leader>v :CtrlP<Space>
+
+" AG
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Ag command with quickfix window
+  command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+
+	" Close quickfix window on selection
+  :autocmd FileType qf nnoremap <buffer> <CR> <CR>:cclose<CR>
+
+  " Bind to leader /
+  nnoremap <leader>/ :Ag -i<Space>
+
+  " Use ag in CtrlP for listing files. no need for cache
+
+  let scala_agignore = '~/.config/ag/scala-base.agignore'
+
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -p ' . scala_agignore . ' -g ""'
+  " let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  let g:ctrlp_use_caching = 0
+endif
 
 " deoplete
 let g:deoplete#enable_at_startup=1
@@ -140,6 +166,9 @@ set background=dark
 
 hi MatchParen cterm=none ctermbg=none ctermfg=red
 hi Pmenu ctermbg=black ctermfg=white
+hi LineNr ctermfg=black
+hi CursorLineNr ctermfg=blue
+hi Comment ctermfg=black
 
 " Automatic syntax highlighting for files
 au BufRead,BufNewFile *.txt     set filetype=markdown
