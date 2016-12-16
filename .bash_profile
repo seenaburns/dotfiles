@@ -21,15 +21,27 @@ HISTFILESIZE=10000
 HISTSIZE=10000
 HISTCONTROL=ignoreboth # ignore dup commands, commands starting with space
 
+# Use nvim or vim as editor
+if hash nvim 2>/dev/null;
+then
+  export EDITOR=nvim
+else
+  export EDITOR=vim
+fi
+
+if [ -e ~/dev/util/lesspipe.sh ];
+then
+  export LESS='-R'
+  export LESSOPEN='|~/dev/util/lesspipe.sh %s'
+fi
+
 # ------------------------------------------------------
 #            OSX Only
 # ------------------------------------------------------
 # Use Terminal's colors for emacs (Mac OS X)
 [[ "$OSTYPE" == "darwin"* ]] && export TERM='xterm-256color'
-
 # Disable brew analytics
 [[ "$OSTYPE" == "darwin"* ]] && export HOMEBREW_NO_ANALYTICS=1
-
 # pbcopy / pbpaste for OSX clipboard
 if [[ "$OSTYPE" == "darwin"* ]]
 then
@@ -44,8 +56,13 @@ alias la="ls -lah"
 alias igrep="grep -ir"
 alias aliases="cat ~/.bash_private ~/.bash_profile | grep '^alias\|^function'";
 
-# Include local executables
+# ------------------------------------------------------
+#                       PATH
+# ------------------------------------------------------
+# Include
+# - local executables
+# - local python
+# - util
 export PATH=$PATH:~/.local/bin
-
-# Include local for pythonpath
 export PYTHONPATH=$PYTHONPATH:~/.local/python
+export PATH=$PATH:~/dev/util
