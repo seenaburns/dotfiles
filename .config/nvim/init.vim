@@ -18,6 +18,8 @@ Plug 'tomtom/tcomment_vim' " gc comments
 if executable('fzf')
   Plug '/usr/local/opt/fzf'
   Plug 'junegunn/fzf.vim'
+else
+  Plug 'ctrlpvim/ctrlp.vim'
 endif
 
 
@@ -57,6 +59,14 @@ match ExtraWhitespace /\s\+$/
 autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
+
+highlight UndefinedMarks ctermfg=yellow
+
+match UndefinedMarks /???/
+autocmd BufWinEnter * match UndefinedMarks /???/
+autocmd InsertEnter * match UndefinedMarks /???/
+autocmd InsertLeave * match UndefinedMarks /???/
 autocmd BufWinLeave * call clearmatches()
 
 " Automatic syntax highlighting for files
@@ -113,6 +123,13 @@ set shiftwidth=2
 set softtabstop=2
 set expandtab
 set autoindent
+filetype indent off
+au BufNewFile,BufRead *.py
+  \ setlocal tabstop=2
+  \ shiftwidth=2
+  \ softtabstop=2
+  \ autoindent
+  \ expandtab
 
 " line numbers
 set number
@@ -207,7 +224,11 @@ endif
 
 let g:fzf_command_prefix = 'Fzf'
 let fzf_tags_sink = {'sink': function('Fzf_tags_sink')}
-nnoremap <leader>v :FzfFiles<cr>
-nnoremap <leader>u :call fzf#vim#tags("", fzf_tags_sink)<cr>
-nnoremap <leader>j :call fzf#vim#tags("'".expand('<cword>'), fzf_tags_sink)<cr>
+if executable('fzf')
+  nnoremap <leader>v :FzfFiles<cr>
+  nnoremap <leader>u :call fzf#vim#tags("", fzf_tags_sink)<cr>
+  nnoremap <leader>j :call fzf#vim#tags("'".expand('<cword>'), fzf_tags_sink)<cr>
+else
+  nnoremap <leader>v :CtrlP<Space>
+endif
 " }}}
