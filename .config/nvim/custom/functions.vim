@@ -6,6 +6,12 @@ function! ToggleTodo()
 	s/^\(\s*\)\([^\[ ]\)/\1[ ] \2/e
 endfunction
 
+function! ToggleTodoToday()
+  s/\([^ ][^\*]\)$/\1 bbb/e
+  s/ \*$//e
+  s/bbb$/*/e
+endfunction
+
 " Quickfix Toggle
 let g:quickfix_is_open = 0
 function! QuickfixToggle()

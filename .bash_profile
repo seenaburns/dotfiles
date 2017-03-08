@@ -20,6 +20,9 @@ shopt -s histappend # session appends not overwrites to history
 HISTFILESIZE=10000
 HISTSIZE=10000
 HISTCONTROL=ignoreboth # ignore dup commands, commands starting with space
+# After each command, save and reload history
+export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+# export PROMPT_COMMAND="history -a; history -c; $PROMPT_COMMAND"
 
 # Use nvim or vim as editor
 if hash nvim 2>/dev/null;

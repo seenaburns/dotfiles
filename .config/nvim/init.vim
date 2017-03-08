@@ -38,6 +38,8 @@ let mapleader = ","
 source ~/.config/nvim/custom/functions.vim
 nnoremap <leader>t :call ToggleTodo()<cr>
 vnoremap <leader>t :call ToggleTodo()<cr>
+nnoremap <leader>T :call ToggleTodoToday()<cr>
+vnoremap <leader>T :call ToggleTodoToday()<cr>
 
 " SYNTAX HILIGHTING {{{
 set t_Co=256
@@ -51,6 +53,11 @@ hi LineNr ctermfg=black
 hi CursorLineNr ctermfg=blue
 hi Comment ctermfg=black
 hi Folded ctermbg=none ctermfg=white
+
+hi TabLineFill cterm=none ctermfg=grey  ctermbg=none
+hi TabLine cterm=none ctermfg=grey  ctermbg=none
+
+hi Search ctermbg=black ctermfg=white
 
 " whitespace
 highlight ExtraWhitespace ctermbg=red guibg=red
@@ -73,6 +80,8 @@ autocmd BufWinLeave * call clearmatches()
 au BufRead,BufNewFile *.txt     set filetype=markdown
 au BufRead,BufNewFile *.conf    set filetype=dosini
 au BufRead,BufNewFile *.bash*   set filetype=sh
+au BufRead,BufNewFile *.jsonnet*   set filetype=c
+au BufRead,BufNewFile *.libsonnet*   set filetype=c
 
 " Better split character
 " Override color scheme to make split them black
@@ -160,6 +169,10 @@ set splitbelow
 " map <C-w>w (switch buffer focus) to something nicer
 nnoremap <leader>w <C-w>w
 
+" tabs
+nnoremap <leader>] :tabn<cr>
+nnoremap <leader>[ :tabp<cr>
+
 " deoplete
 let g:deoplete#enable_at_startup=1
 inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<C-i>"
@@ -188,7 +201,7 @@ nnoremap <leader>g :cprevious<cr>
 
 " Edit vimrc
 nnoremap <leader>ev :edit $MYVIMRC<cr>
-" nnoremap <leader>sv :source $MYVIMRC<cr>
+nnoremap <leader>evs :source $MYVIMRC<cr>
 
 " Quickfix toggle
 nnoremap <leader>q :call QuickfixToggle()<cr>
@@ -206,7 +219,11 @@ let g:airline_left_sep=""
 let g:airline_left_alt_sep="|"
 let g:airline_right_sep=""
 let g:airline_right_alt_sep="|"
-source ~/.config/nvim/custom/custom-airline.vim
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#tabline#show_tab_nr = 0
+let g:airline#extensions#tabline#show_close_button = 0
+source ~/.config/nvim/custom/customairline.vim
 let g:airline_theme="customairline"
 
 " FZF
@@ -214,7 +231,8 @@ function! Fzf_tags_sink(line)
   " Split line in tags file by parts, jump to file + line number
   " <tag><TAB><file><TAB><lineNumber>
   let parts = split(a:line, '\t')
-  execute 'silent e' parts[1]
+  " execute 'silent e' parts[1]
+  execute 'silent :tabedit' parts[1]
   execute 'normal! ' . parts[2] . 'G'
 endfunction
 
