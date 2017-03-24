@@ -11,7 +11,6 @@ Plug 'scrooloose/nerdtree'
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'
-Plug 'justinmk/vim-sneak'
 Plug 'tomtom/tcomment_vim' " gc comments
 
 " FZF
@@ -50,14 +49,19 @@ set background=dark
 hi MatchParen cterm=none ctermbg=none ctermfg=red
 hi Pmenu ctermbg=black ctermfg=white
 hi LineNr ctermfg=black
-hi CursorLineNr ctermfg=blue
 hi Comment ctermfg=black
 hi Folded ctermbg=none ctermfg=white
 
 hi TabLineFill cterm=none ctermfg=grey  ctermbg=none
 hi TabLine cterm=none ctermfg=grey  ctermbg=none
 
-hi Search ctermbg=black ctermfg=white
+hi Search ctermbg=white ctermfg=8
+hi IncSearch ctermbg=16 ctermfg=green " these seem to get inverted?
+hi QuickFixLine ctermbg=black ctermfg=white
+
+set cursorline
+hi CursorLine ctermbg=8 cterm=none
+hi CursorLineNr ctermfg=blue
 
 " whitespace
 highlight ExtraWhitespace ctermbg=red guibg=red
@@ -159,6 +163,9 @@ endif
 " Ignore case unless use a capital in search (smartcase needs ignore set)
 set ignorecase
 set smartcase
+
+" Textwidth for folding
+set textwidth=100
 " }}}
 " Plugins + Custom functions {{{
 " panes
@@ -210,7 +217,11 @@ set colorcolumn=101
 highlight colorcolumn ctermbg=black
 
 if executable('rg')
-  set grepprg=rg\ --color=never
+  set grepprg=rg\ -i\ --vimgrep
+
+  " Ripgrep on /
+  command! -nargs=+ -complete=file -bar Rg silent! grep! <args>|cwindow|redraw!
+  nnoremap <leader>/ :Rg<SPACE>
 endif
 
 " airline
@@ -221,10 +232,14 @@ let g:airline_right_sep=""
 let g:airline_right_alt_sep="|"
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline#extensions#tabline#show_tab_nr = 0
+let g:airline#extensions#tabline#show_tab_nr = 1
+let g:airline#extensions#tabline#tab_nr_type = 1 " show tab number not number of split panes
 let g:airline#extensions#tabline#show_close_button = 0
-source ~/.config/nvim/custom/customairline.vim
-let g:airline_theme="customairline"
+let g:airline#extensions#tabline#show_buffers = 0
+if get(g:, 'airline_theme', 'notloaded') == 'notloaded'
+  source ~/.config/nvim/custom/customairline.vim
+  let g:airline_theme="customairline"
+endif
 
 " FZF
 function! Fzf_tags_sink(line)

@@ -23,3 +23,19 @@ function! QuickfixToggle()
         let g:quickfix_is_open = 1
     endif
 endfunction
+
+" CopyMode
+function! CopyModeToggle()
+  if &number
+    set nonumber
+    set norelativenumber
+  else
+    set number
+    set relativenumber
+  endif
+endfunction
+
+" Clear whitespace at end of line
+function! ClearExtraWhitespace()
+  %s/  *$//gc
+endfunction
