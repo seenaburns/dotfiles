@@ -44,4 +44,5 @@ checkedlink .vim
 checkedlink .config/nvim/init.vim
 checkedlink .config/nvim/custom/functions.vim
 checkedlink .config/nvim/custom/customairline.vim
+checkedlink .config/nvim/syntax/todo.vim
 

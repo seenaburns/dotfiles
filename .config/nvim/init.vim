@@ -12,6 +12,7 @@ Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'
 Plug 'tomtom/tcomment_vim' " gc comments
+Plug 'vim-gitgutter'
 
 " FZF
 if executable('fzf')
@@ -65,20 +66,11 @@ hi CursorLineNr ctermfg=blue
 
 " whitespace
 highlight ExtraWhitespace ctermbg=red guibg=red
+autocmd Syntax * syn match ExtraWhitespace /\s\+$/ containedin=ALL
 
-match ExtraWhitespace /\s\+$/
-autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-autocmd BufWinLeave * call clearmatches()
-
+" Undefined Marks
 highlight UndefinedMarks ctermfg=yellow
-
-match UndefinedMarks /???/
-autocmd BufWinEnter * match UndefinedMarks /???/
-autocmd InsertEnter * match UndefinedMarks /???/
-autocmd InsertLeave * match UndefinedMarks /???/
-autocmd BufWinLeave * call clearmatches()
+autocmd Syntax * syn match UndefinedMarks /???/ containedin=ALL
 
 " Automatic syntax highlighting for files
 au BufRead,BufNewFile *.txt     set filetype=markdown
@@ -86,6 +78,7 @@ au BufRead,BufNewFile *.conf    set filetype=dosini
 au BufRead,BufNewFile *.bash*   set filetype=sh
 au BufRead,BufNewFile *.jsonnet*   set filetype=c
 au BufRead,BufNewFile *.libsonnet*   set filetype=c
+au BufRead,BufNewFile todo*   set filetype=todo
 
 " Better split character
 " Override color scheme to make split them black
@@ -264,4 +257,12 @@ if executable('fzf')
 else
   nnoremap <leader>v :CtrlP<Space>
 endif
+
+" GitGutter
+hi SignColumn ctermbg=none
+hi GitGutterAdd ctermbg=none ctermfg=green
+hi GitGutterChange ctermbg=none ctermfg=blue
+hi GitGutterDelete ctermbg=none ctermfg=red
+hi GitGutterChangeDelete ctermbg=none ctermfg=yellow
+let g:gitgutter_diff_args = '--staged'
 " }}}
