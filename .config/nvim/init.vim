@@ -7,12 +7,10 @@ function! DoRemote(arg)
   UpdateRemotePlugins
 endfunction
 Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
-Plug 'scrooloose/nerdtree'
+" Plug 'scrooloose/nerdtree'
 Plug 'bling/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'tpope/vim-fugitive'
+" Plug 'vim-airline/vim-airline-themes'
 Plug 'tomtom/tcomment_vim' " gc comments
-Plug 'vim-gitgutter'
 
 " FZF
 if executable('fzf')
@@ -173,6 +171,9 @@ nnoremap <leader>w <C-w>w
 nnoremap <leader>] :tabn<cr>
 nnoremap <leader>[ :tabp<cr>
 
+" Insert date
+nnoremap <leader>fd "=strftime("%m-%d-%y")<CR>P
+
 " deoplete
 let g:deoplete#enable_at_startup=1
 inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<C-i>"
@@ -229,6 +230,8 @@ let g:airline#extensions#tabline#show_tab_nr = 1
 let g:airline#extensions#tabline#tab_nr_type = 1 " show tab number not number of split panes
 let g:airline#extensions#tabline#show_close_button = 0
 let g:airline#extensions#tabline#show_buffers = 0
+" let g:airline#extensions#hunks#enabled = 0
+" let g:airline_section_z = ""
 if get(g:, 'airline_theme', 'notloaded') == 'notloaded'
   source ~/.config/nvim/custom/customairline.vim
   let g:airline_theme="customairline"
@@ -258,11 +261,4 @@ else
   nnoremap <leader>v :CtrlP<Space>
 endif
 
-" GitGutter
-hi SignColumn ctermbg=none
-hi GitGutterAdd ctermbg=none ctermfg=green
-hi GitGutterChange ctermbg=none ctermfg=blue
-hi GitGutterDelete ctermbg=none ctermfg=red
-hi GitGutterChangeDelete ctermbg=none ctermfg=yellow
-let g:gitgutter_diff_args = '--staged'
 " }}}
