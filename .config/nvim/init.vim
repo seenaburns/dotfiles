@@ -100,6 +100,10 @@ vnoremap <up> <nop>
 noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
 noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
 
+" Remap increment and decrement numbers to something that works on macs/linux
+nnoremap <A-a> <C-a>
+nnoremap <A-x> <C-x>
+
 " brace completion {{{
 set showmatch
 inoremap {      {}<Left>
