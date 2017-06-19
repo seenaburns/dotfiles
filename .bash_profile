@@ -68,11 +68,38 @@ PS1+=" > ${NORMAL}"
 # ------------------------------------------------------
 alias la="ls -lah"
 alias igrep="grep -ir"
+if hash rg 2>/dev/null; then alias rgi="rg -i"; fi
 alias aliases="cat ~/.bash_private ~/.bash_profile | grep '^alias\|^function'";
+
+# Find a file with a pattern in name:
+function ff() { find . -type f -iname '*'"$*"'*' -ls ; }
+# Find a file with pattern $1 in name and Execute $2 on it:
+function fe() { find . -type f -iname '*'"${1:-}"'*' -exec ${2:-file} {} \;  ; }
 
 sorted-du () {
   paste -d '#' <(du -cs $1) <(du -chs $1) | sort -rn | cut -d '#' -f 2
 }
+
+# Notes
+NOTES_BASE_PATH=""
+[ -d "$HOME/Documents/notes" ] && NOTES_BASE_PATH="$HOME/Documents/notes"
+[ -d "$HOME/docs/notes" ]      && NOTES_BASE_PATH="$HOME/docs/notes"
+
+if [ -n "NOTES_BASE_PATH" ]
+then
+  alias todo="nvim $NOTES_BASE_PATH/todo.txt"
+  alias lstodo="rg --no-line-number ' *(\[.\].*\*)$' $NOTES_BASE_PATH/notes/todo.txt --replace '\$1' | sort"
+
+  # Daily journal
+  # Currently set to a file per month, uncomment to make a file per day
+  function journal() {
+    # today=$(date +"%m-%d-%y")
+    thismonth=$(date +"%m-%y")
+    file=$(echo "$NOTES_BASE_PATH/journal/$thismonth.txt")
+    # [ ! -f $file ] && echo "# $today" > $file
+    nvim $file
+  }
+fi
 
 # ------------------------------------------------------
 #                       PATH
