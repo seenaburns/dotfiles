@@ -8,7 +8,7 @@ function! DoRemote(arg)
   UpdateRemotePlugins
 endfunction
 Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
-" Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree'
 Plug 'bling/vim-airline'
 " Plug 'vim-airline/vim-airline-themes'
 Plug 'tomtom/tcomment_vim' " gc comments
