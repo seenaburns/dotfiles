@@ -59,6 +59,10 @@ alias la="ls -lah"
 alias igrep="grep -ir"
 alias aliases="cat ~/.bash_private ~/.bash_profile | grep '^alias\|^function'";
 
+sorted-du () {
+  paste -d '#' <(du -cs $1) <(du -chs $1) | sort -rn | cut -d '#' -f 2
+}
+
 # ------------------------------------------------------
 #                       PATH
 # ------------------------------------------------------
