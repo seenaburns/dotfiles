@@ -177,7 +177,7 @@ nnoremap <leader>] :tabn<cr>
 nnoremap <leader>[ :tabp<cr>
 
 " Insert date
-nnoremap <leader>fd "=strftime("%m-%d-%y")<CR>P
+nnoremap <leader>fd "=strftime("%m-%d-%y")<CR>p
 
 " deoplete
 let g:deoplete#enable_at_startup=1
