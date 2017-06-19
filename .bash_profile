@@ -1,12 +1,3 @@
-# Custom Prompt
-# Working directory, username, hostname if ssh
-# Bright blue for username, white for command
-if [ -n "$SSH_CLIENT" ]; then
-    PS1='\[\e[0;34m\]\u@\h :: \W/ > \[\e[0m\]'
-else
-    PS1='\[\e[0;34m\]\u :: \W/ > \[\e[0m\]'
-fi
-
 # Private for stuff not on github (if exists)
 [ -f ~/.bash_private ] && source ~/.bash_private
 
@@ -51,6 +42,26 @@ then
     alias pp=pbpaste
     alias pc=pbcopy
 fi
+# Load bash completions from brew
+if [ -f /usr/local/etc/bash_completion ]; then
+  . /usr/local/etc/bash_completion
+fi
+
+# ------------------------------------------------------
+#            Custom Prompt
+# ------------------------------------------------------
+GIT_PS1_SHOWDIRTYSTATE=true
+BLUE="\[\e[0;34m\]"
+NORMAL="\[\e[0m\]"
+
+# Construct PS1
+# Commands need to be in single quotes or they will expand on PS1 creation, not each time the prompt
+# runs
+PS1="${BLUE}"
+[ -n "$SSH_CLIENT" ] && PS1+="\u@\h :: "
+PS1+="\W/"
+hash __git_ps1 2>/dev/null && PS1+='$(__git_ps1)'
+PS1+=" > ${NORMAL}"
 
 # ------------------------------------------------------
 #            Command Aliases / Functions
