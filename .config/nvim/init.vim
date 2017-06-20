@@ -1,6 +1,6 @@
 " vim:foldmethod=marker:foldlevel=0
 " zo + zc to open / close folds in case I forgot :P
-let g:python3_host_prog="$HOME/.local/python/neovim-venv/bin/python3"
+let g:python3_host_prog=expand("~/.local/python/neovim-venv/bin/python3")
 call plug#begin('~/.config/nvim/plugged')
 
 " Plug {{{
