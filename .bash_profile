@@ -87,7 +87,7 @@ NOTES_BASE_PATH=""
 
 if [ -n "NOTES_BASE_PATH" ]
 then
-  alias todo="nvim $NOTES_BASE_PATH/todo.txt"
+  alias todo="(cd $NOTES_BASE_PATH; nvim todo.txt)"
   alias lstodo="rg --no-line-number ' *(\[.\].*\*)$' $NOTES_BASE_PATH/notes/todo.txt --replace '\$1' | sort"
 
   # Daily journal
@@ -95,8 +95,8 @@ then
   function journal() {
     # today=$(date +"%m-%d-%y")
     thismonth=$(date +"%m-%y")
-    file=$(echo "$NOTES_BASE_PATH/journal/$thismonth.txt")
     # [ ! -f $file ] && echo "# $today" > $file
+    (cd $NOTES_BASE_PATH; nvim "journal/$thismonth.txt")
     nvim $file
   }
 fi
