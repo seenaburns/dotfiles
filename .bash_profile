@@ -97,7 +97,6 @@ then
     thismonth=$(date +"%m-%y")
     # [ ! -f $file ] && echo "# $today" > $file
     (cd $NOTES_BASE_PATH; nvim "journal/$thismonth.txt")
-    nvim $file
   }
 fi
 
