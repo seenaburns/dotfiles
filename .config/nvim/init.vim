@@ -42,26 +42,9 @@ vnoremap <leader>T :call ToggleTodoToday()<cr>
 
 " SYNTAX HILIGHTING {{{
 set t_Co=256
-colorscheme delek
 syntax on
 set background=dark
-
-hi MatchParen cterm=none ctermbg=none ctermfg=red
-hi Pmenu ctermbg=black ctermfg=white
-hi LineNr ctermfg=black
-hi Comment ctermfg=black
-hi Folded ctermbg=none ctermfg=white
-
-hi TabLineFill cterm=none ctermfg=grey  ctermbg=none
-hi TabLine cterm=none ctermfg=grey  ctermbg=none
-
-hi Search ctermbg=white ctermfg=8
-hi IncSearch ctermbg=16 ctermfg=green " these seem to get inverted?
-hi QuickFixLine ctermbg=black ctermfg=white
-
-set cursorline
-hi CursorLine ctermbg=8 cterm=none
-hi CursorLineNr ctermfg=blue
+colorscheme nnkd
 
 " whitespace
 highlight ExtraWhitespace ctermbg=red guibg=red
@@ -83,7 +66,6 @@ au BufRead,BufNewFile todo*   set filetype=todo
 " Override color scheme to make split them black
 " set fillchars=vert:\|
 set fillchars=vert:│
-highlight VertSplit cterm=NONE ctermfg=black ctermbg=NONE
 " }}}
 
 " arrow keys disable
@@ -213,7 +195,7 @@ nnoremap <leader>evs :source $MYVIMRC<cr>
 nnoremap <leader>q :call QuickfixToggle()<cr>
 
 set colorcolumn=101
-highlight colorcolumn ctermbg=black
+set cursorline
 
 if executable('rg')
   set grepprg=rg\ -i\ --vimgrep
