@@ -64,6 +64,8 @@ hi Todo cterm=none ctermbg=none ctermfg=none
 "       *Todo            anything that needs extra attention; mostly the
 "                        keywords TODO FIXME and XXX
 
+hi Visual cterm=none ctermbg=15 ctermfg=8
+
 hi MatchParen   cterm=none ctermbg=none ctermfg=blue
 
 " autocomplete results
@@ -89,3 +91,11 @@ hi QuickFixLine cterm=none ctermbg=black ctermfg=white
 
 " Split between panes
 hi VertSplit    cterm=none ctermbg=none ctermfg=black
+
+" Markdown
+hi link markdownH1 Special
+hi link markdownH2 Special
+hi link markdownH3 Special
+hi link markdownH4 Special
+hi link markdownH5 Special
+hi link markdownH6 Special

@@ -1,6 +1,7 @@
 let s:guibg = 'none'
 let s:guifg = '#ffffff'
-let s:termbg = 'none'
+let s:termbg = 8
+let s:termbg_inactive = 'none'
 let s:termbg_warning = 'red'
 let s:termfg = 'white'
 let s:termfg_inactive = 'black'
@@ -38,13 +39,16 @@ function! customairline#refresh()
 
   " Tabline Plugin
   let g:airline#themes#customairline#palette.tabline = {
-        \ 'airline_tab':    [s:guibg,s:guifg,s:termfg_inactive,s:termbg],
-        \ 'airline_tabsel': [s:guibg,s:guifg,s:termfg,s:termbg],
-        \ 'airline_tabtype':[s:guibg,s:guifg,s:termfg_inactive,s:termbg],
-        \ 'airline_tabfill': [s:guibg,s:guifg,s:termfg,s:termbg],
-        \ 'airline_tabhid': [s:guibg,s:guifg,s:termfg,s:termbg],
-        \ 'airline_tabmod': [s:guibg,s:guifg,s:termfg,s:termbg],
-        \ 'airline_tabmod_unsel':  [s:guibg,s:guifg,s:termfg_inactive,s:termbg]
+        \ 'airline_tab':            [s:guibg,s:guifg,s:termfg_inactive,s:termbg_inactive],
+        \ 'airline_tabsel':         [s:guibg,s:guifg,s:termfg,s:termbg_inactive],
+        \ 'airline_tab_right':      [s:guibg,s:guifg,s:termfg_inactive,s:termbg_inactive],
+        \ 'airline_tabsel_right':   [s:guibg,s:guifg,s:termfg,s:termbg_inactive],
+        \ 'airline_tabmod_right':   [s:guibg,s:guifg,s:termfg,s:termbg_inactive],
+        \ 'airline_tabtype':        [s:guibg,s:guifg,s:termfg_inactive,s:termbg_inactive],
+        \ 'airline_tabfill':        [s:guibg,s:guifg,s:termfg,s:termbg_inactive],
+        \ 'airline_tabhid':         [s:guibg,s:guifg,s:termfg,s:termbg_inactive],
+        \ 'airline_tabmod':         [s:guibg,s:guifg,s:termfg,s:termbg_inactive],
+        \ 'airline_tabmod_unsel':   [s:guibg,s:guifg,s:termfg_inactive,s:termbg_inactive]
         \ }
 
   let g:airline#themes#customairline#palette.normal = airline#themes#generate_color_map(s:N1,s:N2,s:N3)
@@ -63,10 +67,10 @@ function! customairline#refresh()
   let g:airline#themes#customairline#palette.normal.airline_warning = [s:guibg,s:guifg,s:termfg,s:termbg_warning]
 
   " Inactive Mode
-  let s:IA = [s:guibg,s:guifg,s:termfg_inactive,s:termbg]
+  let s:IA = [s:guibg,s:guifg,s:termfg_inactive,s:termbg_inactive]
   let g:airline#themes#customairline#palette.inactive = airline#themes#generate_color_map(s:IA,s:IA,s:IA)
   let g:airline#themes#customairline#palette.inactive_modified = {
-        \ 'airline_c':  [s:guibg,s:guifg,s:termfg,s:termbg],
+        \ 'airline_c':  [s:guibg,s:guifg,s:termfg,s:termbg_inactive],
         \ }
 
 endfunction
