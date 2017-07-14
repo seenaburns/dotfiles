@@ -1,19 +1,20 @@
 " vim:foldmethod=marker:foldlevel=0
 " zo + zc to open / close folds in case I forgot :P
 let g:python3_host_prog=expand("~/.local/python/neovim-venv/bin/python3")
+
+" PLUG {{{
 call plug#begin('~/.config/nvim/plugged')
 
-" Plug {{{
 function! DoRemote(arg)
   UpdateRemotePlugins
 endfunction
+
 Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 Plug 'scrooloose/nerdtree'
 Plug 'bling/vim-airline'
-" Plug 'vim-airline/vim-airline-themes'
 Plug 'tomtom/tcomment_vim' " gc comments
 
-" FZF
+" FZF / Ctrlp for file navigation
 if executable('fzf')
   Plug '/usr/local/opt/fzf'
   Plug 'junegunn/fzf.vim'
@@ -21,26 +22,22 @@ else
   Plug 'ctrlpvim/ctrlp.vim'
 endif
 
-
+" Language plugins
 " Scala plugins
-Plug 'derekwyatt/vim-scala'
+if executable('scalac')
+  Plug 'derekwyatt/vim-scala'
+endif
 " Haskell Plugins
 " Plug 'neovimhaskell/haskell-vim'
+" Rust Plugins
+if executable('rustc')
+  Plug 'rust-lang/rust.vim'
+  Plug 'racer-rust/vim-racer'
+endif
 
 call plug#end()
 " }}}
-
-" Leader key
-let mapleader = ","
-
-" Custom
-source ~/.config/nvim/custom/functions.vim
-nnoremap <leader>t :call ToggleTodo()<cr>
-vnoremap <leader>t :call ToggleTodo()<cr>
-nnoremap <leader>T :call ToggleTodoToday()<cr>
-vnoremap <leader>T :call ToggleTodoToday()<cr>
-
-" SYNTAX HILIGHTING {{{
+" LOOK AND SYNTAX HILIGHTING {{{
 set t_Co=256
 syntax on
 set background=dark
@@ -66,7 +63,13 @@ au BufRead,BufNewFile todo*   set filetype=todo
 " Override color scheme to make split them black
 " set fillchars=vert:\|
 set fillchars=vert:│
+
+set colorcolumn=101
+set cursorline
 " }}}
+" KEYMAPPINGS {{{
+" Leader key
+let mapleader = ","
 
 " arrow keys disable
 nnoremap <right> <nop>
@@ -87,7 +90,30 @@ noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
 nnoremap <A-a> <C-a>
 nnoremap <A-x> <C-x>
 
-" brace completion {{{
+" panes
+nnoremap <leader>d :vsp<cr>
+set splitright
+nnoremap <leader>s :split<cr>
+set splitbelow
+" map <C-w>w (switch buffer focus) to something nicer
+nnoremap <leader>w <C-w>w
+
+" tabs
+nnoremap <leader>] :tabn<cr>
+nnoremap <leader>[ :tabp<cr>
+
+" Insert date
+nnoremap <leader>fd "=strftime("%m-%d-%y")<CR>p
+
+" Edit vimrc
+nnoremap <leader>ev :edit $MYVIMRC<cr>
+nnoremap <leader>evs :source $MYVIMRC<cr>
+
+" Quickfix toggle
+nnoremap <leader>q :call QuickfixToggle()<cr>
+
+" }}}
+" BRACE COMPLETION {{{
 set showmatch
 inoremap {      {}<Left>
 inoremap {<CR>  {<CR>}<Esc>O
@@ -104,7 +130,7 @@ inoremap [<CR>  [<CR>]<Esc>O
 inoremap <expr> ]  strpart(getline('.'), col('.')-1, 1) == "]" ? "\<Right>" : "]"
 inoremap []     []
 " }}}
-" General/Toggleable Settings {{{
+" GENERAL/TOGGLEABLE SETTINGS {{{
 " horizontal split splits below
 set splitbelow
 
@@ -145,21 +171,13 @@ set smartcase
 " Textwidth for folding
 set textwidth=100
 " }}}
-" Plugins + Custom functions {{{
-" panes
-nnoremap <leader>d :vsp<cr>
-set splitright
-nnoremap <leader>s :split<cr>
-set splitbelow
-" map <C-w>w (switch buffer focus) to something nicer
-nnoremap <leader>w <C-w>w
-
-" tabs
-nnoremap <leader>] :tabn<cr>
-nnoremap <leader>[ :tabp<cr>
-
-" Insert date
-nnoremap <leader>fd "=strftime("%m-%d-%y")<CR>p
+" PLUGINS + CUSTOM FUNCTIONS {{{
+" Custom
+source ~/.config/nvim/custom/functions.vim
+nnoremap <leader>t :call ToggleTodo()<cr>
+vnoremap <leader>t :call ToggleTodo()<cr>
+nnoremap <leader>T :call ToggleTodoToday()<cr>
+vnoremap <leader>T :call ToggleTodoToday()<cr>
 
 " deoplete
 let g:deoplete#enable_at_startup=1
@@ -187,16 +205,7 @@ nnoremap <leader>l :cfirst<cr>
 nnoremap <leader>f :cnext<cr>
 nnoremap <leader>g :cprevious<cr>
 
-" Edit vimrc
-nnoremap <leader>ev :edit $MYVIMRC<cr>
-nnoremap <leader>evs :source $MYVIMRC<cr>
-
-" Quickfix toggle
-nnoremap <leader>q :call QuickfixToggle()<cr>
-
-set colorcolumn=101
-set cursorline
-
+" Ripgrep for search
 if executable('rg')
   set grepprg=rg\ -i\ --vimgrep
 
@@ -245,7 +254,6 @@ if executable('fzf')
   nnoremap <leader>u :call fzf#vim#tags("", fzf_tags_sink)<cr>
   nnoremap <leader>j :call fzf#vim#tags("'".expand('<cword>'), fzf_tags_sink)<cr>
 else
-  nnoremap <leader>v :CtrlP<Space>
+  nnoremap <leader>v :CtrlP<Space><cr>
 endif
-
 " }}}
