@@ -70,6 +70,7 @@ hi MatchParen   cterm=none ctermbg=none ctermfg=blue
 
 " autocomplete results
 hi Pmenu        cterm=none ctermbg=8 ctermfg=white
+hi PmenuSel     cterm=none ctermbg=white ctermfg=8
 
 hi CursorLine   cterm=none ctermbg=8 ctermfg=none
 hi CursorLineNr cterm=none ctermbg=none ctermfg=blue
@@ -77,7 +78,7 @@ hi CursorLineNr cterm=none ctermbg=none ctermfg=blue
 hi LineNr       cterm=none ctermbg=none ctermfg=black
 
 " Textwidth column
-hi colorcolumn  cterm=none ctermbg=black ctermfg=none
+hi colorcolumn  cterm=none ctermbg=8 ctermfg=none
 
 hi Folded       cterm=none ctermbg=none ctermfg=white
 
