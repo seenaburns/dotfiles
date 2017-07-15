@@ -170,6 +170,9 @@ set smartcase
 
 " Textwidth for folding
 set textwidth=100
+
+" Disable cursor styling in new neovim version
+set guicursor=
 " }}}
 " PLUGINS + CUSTOM FUNCTIONS {{{
 " Custom
