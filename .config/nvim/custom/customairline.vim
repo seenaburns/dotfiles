@@ -70,7 +70,7 @@ function! customairline#refresh()
   let s:IA = [s:guibg,s:guifg,s:termfg_inactive,s:termbg_inactive]
   let g:airline#themes#customairline#palette.inactive = airline#themes#generate_color_map(s:IA,s:IA,s:IA)
   let g:airline#themes#customairline#palette.inactive_modified = {
-        \ 'airline_c':  [s:guibg,s:guifg,s:termfg,s:termbg_inactive],
+        \ 'airline_c':  [s:guibg,s:guifg,s:termfg_modified,s:termbg_inactive],
         \ }
 
 endfunction
