@@ -3,7 +3,7 @@
 
 # Colors for LS and Grep
 export CLICOLOR=1 # LS Color
-export GREP_OPTIONS='--color=auto'
+alias grep="grep --color=auto"
 export GREP_COLOR='1;32'
 
 # Better Bash History
