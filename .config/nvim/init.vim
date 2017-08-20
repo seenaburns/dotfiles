@@ -13,6 +13,8 @@ Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 Plug 'scrooloose/nerdtree'
 Plug 'bling/vim-airline'
 Plug 'tomtom/tcomment_vim' " gc comments
+Plug 'tpope/vim-surround'
+
 
 " FZF / Ctrlp for file navigation
 if executable('fzf')
@@ -25,14 +27,15 @@ endif
 " Language plugins
 " Scala plugins
 if executable('scalac')
-  Plug 'derekwyatt/vim-scala'
+  Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
 endif
 " Haskell Plugins
 " Plug 'neovimhaskell/haskell-vim'
 " Rust Plugins
 if executable('rustc')
-  Plug 'rust-lang/rust.vim'
-  Plug 'racer-rust/vim-racer'
+  Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+  Plug 'racer-rust/vim-racer', { 'for': 'rust' }
+  Plug 'neomake/neomake', { 'for': 'rust' }
 endif
 
 call plug#end()
@@ -115,20 +118,20 @@ nnoremap <leader>q :call QuickfixToggle()<cr>
 " }}}
 " BRACE COMPLETION {{{
 set showmatch
-inoremap {      {}<Left>
-inoremap {<CR>  {<CR>}<Esc>O
-inoremap <expr> }  strpart(getline('.'), col('.')-1, 1) == "}" ? "\<Right>" : "}"
-inoremap {}     {}
-
-inoremap (      ()<Left>
-inoremap (<CR>  (<CR>)<Esc>O
-inoremap <expr> )  strpart(getline('.'), col('.')-1, 1) == ")" ? "\<Right>" : ")"
-inoremap ()     ()
-
-inoremap [      []<Left>
-inoremap [<CR>  [<CR>]<Esc>O
-inoremap <expr> ]  strpart(getline('.'), col('.')-1, 1) == "]" ? "\<Right>" : "]"
-inoremap []     []
+" inoremap {      {}<Left>
+" inoremap {<CR>  {<CR>}<Esc>O
+" inoremap <expr> }  strpart(getline('.'), col('.')-1, 1) == "}" ? "\<Right>" : "}"
+" inoremap {}     {}
+"
+" inoremap (      ()<Left>
+" inoremap (<CR>  (<CR>)<Esc>O
+" inoremap <expr> )  strpart(getline('.'), col('.')-1, 1) == ")" ? "\<Right>" : ")"
+" inoremap ()     ()
+"
+" inoremap [      []<Left>
+" inoremap [<CR>  [<CR>]<Esc>O
+" inoremap <expr> ]  strpart(getline('.'), col('.')-1, 1) == "]" ? "\<Right>" : "]"
+" inoremap []     []
 " }}}
 " GENERAL/TOGGLEABLE SETTINGS {{{
 " horizontal split splits below
@@ -259,4 +262,19 @@ if executable('fzf')
 else
   nnoremap <leader>v :CtrlP<Space><cr>
 endif
+
+" Racer
+set hidden
+let g:racer_cmd = "/home/seena/.cargo/bin/racer"
+
+" Neomake
+" Gross hack to stop Neomake running when exitting because it creates a zombie cargo check process
+" which holds the lock and never exits. But then, if you only have QuitPre, closing one pane will
+" disable neomake, so BufEnter reenables when you enter another buffer.
+let s:quitting = 0
+au QuitPre *.rs let s:quitting = 1
+au BufEnter *.rs let s:quitting = 0
+au BufWritePost *.rs if ! s:quitting | Neomake | else | echom "Neomake disabled"| endif
+let g:neomake_warning_sign = {'text': '?'}
+
 " }}}
