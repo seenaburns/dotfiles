@@ -21,7 +21,7 @@ hi Identifier cterm=none ctermbg=none ctermfg=blue
 "       *Identifier      any variable name
 "        Function        function name (also: methods for classes)
 "
-hi Statement cterm=none ctermbg=none ctermfg=none
+hi Statement cterm=bold ctermbg=none ctermfg=none
 "       *Statement       any statement
 "        Conditional     if, then, else, endif, switch, etc.
 "        Repeat          for, do, while, etc.
@@ -100,3 +100,8 @@ hi link markdownH3 Special
 hi link markdownH4 Special
 hi link markdownH5 Special
 hi link markdownH6 Special
+
+" Neomake
+hi NeomakeErrorSign cterm=none ctermbg=none ctermfg=red
+hi NeomakeWarningSign cterm=none ctermbg=none ctermfg=yellow
+hi SignColumn cterm=none ctermbg=none ctermfg=white
