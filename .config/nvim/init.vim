@@ -56,6 +56,7 @@ autocmd Syntax * syn match UndefinedMarks /???/ containedin=ALL
 
 " Automatic syntax highlighting for files
 au BufRead,BufNewFile *.txt     set filetype=markdown
+au BufRead,BufNewFile *.sbt     set filetype=scala
 au BufRead,BufNewFile *.conf    set filetype=dosini
 au BufRead,BufNewFile *.bash*   set filetype=sh
 au BufRead,BufNewFile *.jsonnet*   set filetype=c
