@@ -14,7 +14,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'bling/vim-airline'
 Plug 'tomtom/tcomment_vim' " gc comments
 Plug 'tpope/vim-surround'
-
+Plug 'milkypostman/vim-togglelist'
 
 " FZF / Ctrlp for file navigation
 if executable('fzf')
@@ -114,9 +114,6 @@ nnoremap <leader>fd "=strftime("%m-%d-%y")<CR>p
 nnoremap <leader>ev :edit $MYVIMRC<cr>
 nnoremap <leader>evs :source $MYVIMRC<cr>
 
-" Quickfix toggle
-nnoremap <leader>q :call QuickfixToggle()<cr>
-
 " }}}
 " BRACE COMPLETION {{{
 set showmatch
@@ -206,10 +203,10 @@ nnoremap <leader>c :call NERDTreeToggleFind()<cr>
 let sarsivim = 'sarsi-nvim'
 if (executable(sarsivim))
   call rpcstart(sarsivim)
+  " nnoremap <leader>l :cfirst<cr>
+  nnoremap <leader>f :cnext<cr>
+  nnoremap <leader>g :cprevious<cr>
 endif
-nnoremap <leader>l :cfirst<cr>
-nnoremap <leader>f :cnext<cr>
-nnoremap <leader>g :cprevious<cr>
 
 " Ripgrep for search
 if executable('rg')
