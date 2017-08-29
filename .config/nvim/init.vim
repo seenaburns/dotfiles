@@ -105,6 +105,7 @@ nnoremap <leader>w <C-w>w
 " tabs
 nnoremap <leader>] :tabn<cr>
 nnoremap <leader>[ :tabp<cr>
+nnoremap <leader>T :tabe<cr>
 
 " Insert date
 nnoremap <leader>fd "=strftime("%m-%d-%y")<CR>p
@@ -183,8 +184,6 @@ set guicursor=
 source ~/.config/nvim/custom/functions.vim
 nnoremap <leader>t :call ToggleTodo()<cr>
 vnoremap <leader>t :call ToggleTodo()<cr>
-nnoremap <leader>T :call ToggleTodoToday()<cr>
-vnoremap <leader>T :call ToggleTodoToday()<cr>
 
 " deoplete
 let g:deoplete#enable_at_startup=1
@@ -241,25 +240,15 @@ if get(g:, 'airline_theme', 'notloaded') == 'notloaded'
 endif
 
 " FZF
-function! Fzf_tags_sink(line)
-  " Split line in tags file by parts, jump to file + line number
-  " <tag><TAB><file><TAB><lineNumber>
-  let parts = split(a:line, '\t')
-  " execute 'silent e' parts[1]
-  execute 'silent :tabedit' parts[1]
-  execute 'normal! ' . parts[2] . 'G'
-endfunction
-
 if executable('rg')
   let $FZF_DEFAULT_COMMAND = 'rg --files --no-messages "" .'
 endif
 
 let g:fzf_command_prefix = 'Fzf'
-let fzf_tags_sink = {'sink': function('Fzf_tags_sink')}
 if executable('fzf')
   nnoremap <leader>v :FzfFiles<cr>
-  nnoremap <leader>u :call fzf#vim#tags("", fzf_tags_sink)<cr>
-  nnoremap <leader>j :call fzf#vim#tags("'".expand('<cword>'), fzf_tags_sink)<cr>
+  nnoremap <leader>u :FzfTags<cr>
+  nnoremap <leader>j :call fzf#vim#tags("'".expand('<cword>'))<cr>
 else
   nnoremap <leader>v :CtrlP<Space><cr>
 endif
