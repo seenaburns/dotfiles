@@ -18,7 +18,13 @@ volume() {
   echo -n "$volLevel% ${volDb}dB"
 }
 
+temp() {
+  tempC=$(cat /sys/class/thermal/thermal_zone0/temp | tr -d '\n')
+  tempF=$(echo "$tempC/1000 * 9/5 + 32" | bc)
+  echo "${tempF}F"
+}
+
 while true; do
-        echo "%{c}%{F$FG}%{B$BG} $(volume) | $(clock) %{F-}%{B-}"
+        echo "%{c}%{F$FG}%{B$BG}%{r} $(volume) | $(temp) | $(clock) %{F-}%{B-}"
         sleep 1
-done | lemonbar -g 301x15+1625+10 -B "$BG" -F "$FG" -f "fira mono:size=10" -p
+done | lemonbar -g 1900x15+0+10 -B "$BG" -F "$FG" -f "fira mono:size=10" -p
