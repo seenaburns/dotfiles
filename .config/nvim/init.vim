@@ -19,6 +19,7 @@ Plug 'milkypostman/vim-togglelist'
 " FZF / Ctrlp for file navigation
 if executable('fzf')
   Plug '/usr/local/opt/fzf'
+  Plug 'junegunn/fzf', {'dir': '~/tmp/fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
 else
   Plug 'ctrlpvim/ctrlp.vim'
@@ -253,6 +254,10 @@ endif
 " Racer
 set hidden
 let g:racer_cmd = "/home/seena/.cargo/bin/racer"
+let g:racer_experimental_completer = 1
+au FileType rust nmap <leader>rx <Plug>(rust-doc)
+au FileType rust nmap <leader>rd <Plug>(rust-def)
+au FileType rust nmap <leader>rs <Plug>(rust-def-split)
 
 " Neomake
 " Gross hack to stop Neomake running when exitting because it creates a zombie cargo check process
