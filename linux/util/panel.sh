@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 
-BG="#1D1C27"
-FG="#C8D1E3"
+XOFFSET=${1:-20}
+BG=${2:-"#1D1C27"}
+FG=${3:-"#C8D1E3"}
+
+XSIZE=$(echo "1920 - (2*$XOFFSET)" | bc)
 
 clock() {
   # from https://wiki.archlinux.org/index.php/Lemonbar
@@ -27,4 +30,4 @@ temp() {
 while true; do
         echo "%{c}%{F$FG}%{B$BG}%{r} $(volume) | $(temp) | $(clock) %{F-}%{B-}"
         sleep 1
-done | lemonbar -g 1900x15+0+10 -B "$BG" -F "$FG" -f "fira mono:size=10" -p
+done | lemonbar -g "${XSIZE}x20+$XOFFSET+1180" -B "$BG" -F "$FG" -f "fira mono:size=10" -p
