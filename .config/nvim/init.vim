@@ -115,6 +115,9 @@ nnoremap <leader>fd "=strftime("%m-%d-%y")<CR>p
 nnoremap <leader>ev :edit $MYVIMRC<cr>
 nnoremap <leader>evs :source $MYVIMRC<cr>
 
+" Toggle paste with F2
+set pastetoggle=<F2>
+
 " }}}
 " BRACE COMPLETION {{{
 set showmatch

@@ -1,6 +1,0 @@
-neocomplcache.vim
-syntastic
-unite.vim
-vim-airline
-vim-sensible
-vim-sneak
