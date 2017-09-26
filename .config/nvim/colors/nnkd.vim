@@ -63,6 +63,8 @@ hi Error cterm=none ctermbg=none ctermfg=red
 hi Todo cterm=none ctermbg=none ctermfg=none
 "       *Todo            anything that needs extra attention; mostly the
 "                        keywords TODO FIXME and XXX
+"
+hi Keyword cterm=bold ctermbg=none ctermfg=green
 
 hi Visual cterm=none ctermbg=15 ctermfg=8
 

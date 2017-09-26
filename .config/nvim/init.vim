@@ -1,6 +1,7 @@
 " vim:foldmethod=marker:foldlevel=0
 " zo + zc to open / close folds in case I forgot :P
 let g:python3_host_prog=expand("~/.local/python/neovim-venv/bin/python3")
+let g:python_host_prog=expand("~/.local/python/neovim-venv/bin/python3")
 
 " PLUG {{{
 call plug#begin('~/.config/nvim/plugged')
@@ -15,11 +16,12 @@ Plug 'bling/vim-airline'
 Plug 'tomtom/tcomment_vim' " gc comments
 Plug 'tpope/vim-surround'
 Plug 'milkypostman/vim-togglelist'
+Plug 'neomake/neomake', { 'for': ['rust', 'haskell'] }
 
 " FZF / Ctrlp for file navigation
 if executable('fzf')
   Plug '/usr/local/opt/fzf'
-  Plug 'junegunn/fzf', {'dir': '~/tmp/fzf', 'do': './install --all' }
+  Plug 'junegunn/fzf', {'dir': '~/.local/src/fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
 else
   Plug 'ctrlpvim/ctrlp.vim'
@@ -31,12 +33,14 @@ if executable('scalac')
   Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
 endif
 " Haskell Plugins
-" Plug 'neovimhaskell/haskell-vim'
+if executable('ghc')
+  Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
+  Plug 'owickstrom/neovim-ghci', { 'for': 'haskell' }
+endif
 " Rust Plugins
 if executable('rustc')
   Plug 'rust-lang/rust.vim', { 'for': 'rust' }
   Plug 'racer-rust/vim-racer', { 'for': 'rust' }
-  Plug 'neomake/neomake', { 'for': 'rust' }
 endif
 
 call plug#end()
@@ -117,6 +121,10 @@ nnoremap <leader>evs :source $MYVIMRC<cr>
 
 " Toggle paste with F2
 set pastetoggle=<F2>
+
+" Terminal Mode
+" Use escape to go back to normal mode
+tnoremap <Esc> <C-\><C-n>
 
 " }}}
 " BRACE COMPLETION {{{
@@ -271,5 +279,40 @@ au QuitPre *.rs let s:quitting = 1
 au BufEnter *.rs let s:quitting = 0
 au BufWritePost *.rs if ! s:quitting | Neomake | else | echom "Neomake disabled"| endif
 let g:neomake_warning_sign = {'text': '?'}
+
+" Haskell
+" Changes highlighting links to use Type/Structure
+let g:haskell_classic_highlighting = 1
+
+augroup ghciMaps
+  au!
+  " Background process and window management
+  au FileType haskell nnoremap <silent> <leader>gs :GhciStart<CR>
+  au FileType haskell nnoremap <silent> <leader>gk :GhciKill<CR>
+
+  " Open GHCi split horizontally
+  au FileType haskell nnoremap <silent> <leader>go :GhciOpen<CR>
+  au FileType haskell nnoremap <silent> <leader>gh :GhciHide<CR>
+
+  " Automatically reload on save
+  au BufWritePost *.hs GhciReload
+
+  " Load individual modules
+  au FileType haskell nnoremap <silent> <leader>gl :GhciLoadCurrentModule<CR>
+  au FileType haskell nnoremap <silent> <leader>gf :GhciLoadCurrentFile<CR>
+augroup END
+
+" GHCi starts automatically. Set this if you'd like to prevent that.
+let g:ghci_start_immediately = 1
+
+" GHCi Settings
+" Check if shell.nix exists in root, use nix shell if so
+if !empty(glob('shell.nix'))
+  let g:ghci_command = 'nix-shell --command "cabal repl"'
+  let g:ghci_command_line_options = ''
+else
+  let g:ghci_command = 'ghci'
+  let g:ghci_command_line_options = '-fobject-code'
+endif
 
 " }}}
