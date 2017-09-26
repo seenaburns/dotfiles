@@ -1,5 +1,8 @@
 " vim:foldmethod=marker:foldlevel=0
 " zo + zc to open / close folds in case I forgot :P
+
+" Use virtualenv with neovim installed for python
+" Map python2 to python3 because I'm lazy, this will only come back to bite me later
 let g:python3_host_prog=expand("~/.local/python/neovim-venv/bin/python3")
 let g:python_host_prog=expand("~/.local/python/neovim-venv/bin/python3")
 
