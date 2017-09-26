@@ -33,7 +33,7 @@ sleep 2 && pkill -USR1 -x sxhkd &
 xsetroot -solid '#1D1C27'
 xset r rate 175 40
 
-# feh --bg-fill ~/Pictures/bg
+feh --bg-fill ~/Pictures/bg
 
 if [ $(pgrep -f 'panel') ]; then
   pkill -f 'panel'
