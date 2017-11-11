@@ -20,8 +20,13 @@ Plug 'w0rp/ale'
 
 " FZF / Ctrlp for file navigation
 if executable('fzf')
-  Plug '/usr/local/opt/fzf'
-  Plug 'junegunn/fzf', {'dir': '~/.local/src/fzf', 'do': './install --all' }
+  " OSX vs Linux loading (depending on where fzf is)
+  let s:uname = system("echo -n \"$(uname)\"")
+  if !v:shell_error && s:uname == "Darwin"
+    Plug '/usr/local/opt/fzf'
+  else
+    Plug 'junegunn/fzf', {'dir': '~/.local/src/fzf', 'do': './install --all' }
+  endif
   Plug 'junegunn/fzf.vim'
 else
   Plug 'ctrlpvim/ctrlp.vim'
