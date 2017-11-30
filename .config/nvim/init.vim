@@ -165,7 +165,7 @@ au BufNewFile,BufRead *.py
 
 " line numbers
 set number
-set relativenumber
+" set relativenumber
 
 " show title
 set title
