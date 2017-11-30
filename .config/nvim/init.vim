@@ -61,13 +61,13 @@ highlight UndefinedMarks ctermfg=yellow
 autocmd Syntax * syn match UndefinedMarks /???/ containedin=ALL
 
 " Automatic syntax highlighting for files
-au BufRead,BufNewFile *.txt     set filetype=markdown
-au BufRead,BufNewFile *.sbt     set filetype=scala
-au BufRead,BufNewFile *.conf    set filetype=dosini
-au BufRead,BufNewFile *.bash*   set filetype=sh
-au BufRead,BufNewFile *.jsonnet*   set filetype=c
-au BufRead,BufNewFile *.libsonnet*   set filetype=c
-au BufRead,BufNewFile todo*   set filetype=todo
+au BufRead,BufNewFile *.sbt           set filetype=scala
+au BufRead,BufNewFile *.conf          set filetype=dosini
+au BufRead,BufNewFile *.bash*         set filetype=sh
+au BufRead,BufNewFile *.jsonnet*      set filetype=c
+au BufRead,BufNewFile *.libsonnet*    set filetype=c
+au BufRead,BufNewFile todo*           set filetype=todo
+au BufRead,BufNewFile *.txt           set filetype=todo
 
 " Better split character
 " Override color scheme to make split them black
