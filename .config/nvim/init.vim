@@ -15,6 +15,8 @@ Plug 'tomtom/tcomment_vim' " gc comments
 Plug 'tpope/vim-surround'
 Plug 'milkypostman/vim-togglelist'
 Plug 'neomake/neomake', { 'for': ['rust', 'haskell'] }
+Plug 'airblade/vim-gitgutter'
+Plug 'w0rp/ale'
 
 " FZF / Ctrlp for file navigation
 if executable('fzf')
@@ -40,6 +42,7 @@ if executable('rustc')
   Plug 'rust-lang/rust.vim', { 'for': 'rust' }
   Plug 'racer-rust/vim-racer', { 'for': 'rust' }
 endif
+" Plug 'vim-ruby/vim-ruby'
 
 call plug#end()
 " }}}
@@ -312,5 +315,12 @@ else
   let g:ghci_command = 'ghci'
   let g:ghci_command_line_options = '-fobject-code'
 endif
+
+" ALE
+let g:airline#extensions#ale#enabled = 1
+let g:ale_linters = {'go': ['golint', 'gofmt']}
+let g:ale_lint_delay = 800
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 " }}}
