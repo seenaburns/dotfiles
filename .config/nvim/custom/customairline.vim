@@ -1,6 +1,6 @@
 let s:guibg = 'none'
 let s:guifg = '#ffffff'
-let s:termbg = 8
+let s:termbg = 'green'
 let s:termbg_inactive = 'none'
 let s:termbg_warning = 'red'
 let s:termfg = 'white'
