@@ -33,10 +33,8 @@ function checkedlink {
 srcdir=~/.dotfiles
 destdir=~
 
+checkedlink .bashrc
 checkedlink .bash_profile
-# checkedlink .emacs
-# checkedlink .emacs.d/config
-# checkedlink .emacs.d/bin
 checkedlink .inputrc
 checkedlink .tmux.conf
 checkedlink .vimrc
