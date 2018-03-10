@@ -51,13 +51,13 @@ fi
 #            Custom Prompt
 # ------------------------------------------------------
 GIT_PS1_SHOWDIRTYSTATE=true
-BLUE="\[\e[0;34m\]"
+COLOR="\[\e[0;34m\]"
 NORMAL="\[\e[0m\]"
 
 # Construct PS1
 # Commands need to be in single quotes or they will expand on PS1 creation, not each time the prompt
 # runs
-PS1="${BLUE}"
+PS1="${COLOR}"
 [ -n "$SSH_CLIENT" ] && PS1+="\u@\h :: "
 PS1+="\W/"
 hash __git_ps1 2>/dev/null && PS1+='$(__git_ps1)'
@@ -77,7 +77,7 @@ function ff() { find . -type f -iname '*'"$*"'*' -ls ; }
 function fe() { find . -type f -iname '*'"${1:-}"'*' -exec ${2:-file} {} \;  ; }
 
 sorted-du () {
-  paste -d '#' <(du -cs $1) <(du -chs $1) | sort -rn | cut -d '#' -f 2
+  paste -d '#' <(du -cs *) <(du -chs *) | sort -rn | cut -d '#' -f 2
 }
 
 # Notes
