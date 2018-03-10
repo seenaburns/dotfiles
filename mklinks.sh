@@ -38,7 +38,6 @@ checkedlink .bash_profile
 checkedlink .inputrc
 checkedlink .tmux.conf
 checkedlink .vimrc
-checkedlink .vim
 checkedlink .config/nvim/init.vim
 checkedlink .config/nvim/custom/functions.vim
 checkedlink .config/nvim/custom/customairline.vim
