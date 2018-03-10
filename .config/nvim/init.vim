@@ -14,7 +14,8 @@ Plug 'bling/vim-airline'
 Plug 'tomtom/tcomment_vim' " gc comments
 Plug 'tpope/vim-surround'
 Plug 'milkypostman/vim-togglelist'
-Plug 'neomake/neomake', { 'for': ['rust', 'haskell'] }
+Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
+Plug 'neomake/neomake', { 'for': ['rust', 'haskell', 'typescript'] }
 Plug 'airblade/vim-gitgutter'
 Plug 'w0rp/ale'
 
@@ -292,6 +293,9 @@ let s:quitting = 0
 au QuitPre *.rs let s:quitting = 1
 au BufEnter *.rs let s:quitting = 0
 au BufWritePost *.rs if ! s:quitting | Neomake | else | echom "Neomake disabled"| endif
+au QuitPre *.ts let s:quitting = 1
+au BufEnter *.ts let s:quitting = 0
+au BufWritePost *.ts if ! s:quitting | Neomake | else | echom "Neomake disabled"| endif
 let g:neomake_warning_sign = {'text': '?'}
 
 " Haskell
