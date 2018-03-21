@@ -25,5 +25,5 @@ endfunction
 
 " Clear whitespace at end of line
 function! ClearExtraWhitespace()
-  %s/  *$//gc
+  %s/  *$//g
 endfunction
