@@ -107,3 +107,9 @@ hi link markdownH6 Special
 hi NeomakeErrorSign cterm=none ctermbg=none ctermfg=red
 hi NeomakeWarningSign cterm=none ctermbg=none ctermfg=yellow
 hi SignColumn cterm=none ctermbg=none ctermfg=white
+
+" Quickfix
+hi link qfFileName Identifier
+
+" Language specific
+hi GoString cterm=none ctermbg=none ctermfg=blue
