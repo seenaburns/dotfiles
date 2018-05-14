@@ -3,7 +3,7 @@ let s:guifg = '#ffffff'
 let s:termbg = 'green'
 let s:termbg_inactive = 'none'
 let s:termbg_warning = 'red'
-let s:termfg = 'white'
+let s:termfg = 'black'
 let s:termfg_inactive = 'black'
 let s:termfg_modified = 'green'
 
