@@ -1,0 +1,60 @@
+{
+    "editor.fontFamily": "Fira Mono",
+    "editor.renderWhitespace": "boundary",
+    "editor.minimap.enabled": false,
+
+    "vim.hlsearch": true,
+
+    "telemetry.enableTelemetry": false,
+    "telemetry.enableCrashReporter": false,
+
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": ["<leader>", "v"],
+            "commands": [
+                {
+                    "command": "workbench.action.quickOpen"
+                }
+            ],
+        },
+        {
+            "before": ["<leader>", "d"],
+            "commands": [
+                {
+                    "command": "workbench.action.splitEditorRight"
+                }
+            ],
+        },
+        {
+            "before": ["<leader>", "s"],
+            "commands": [
+                {
+                    "command": "workbench.action.splitEditorDown"
+                }
+            ],
+        },
+        {
+            "before": ["<leader>", "n"],
+            "commands": [
+                {
+                    "command": "editor.action.marker.next"
+                }
+            ],
+        },
+        {
+            "before": ["<leader>", "N"],
+            "commands": [
+                {
+                    "command": "editor.action.marker.prev"
+                }
+            ],
+        },
+    ],
+
+    "vim.leader": ",",
+    "workbench.activityBar.visible": false,
+    "window.zoomLevel": 1,
+    "editor.fontSize": 10,
+    "terminal.integrated.fontSize": 10,
+    "workbench.colorTheme": "Custom",
+}

@@ -1,0 +1,22 @@
+{
+    "name": "custom-theme",
+    "displayName": "Custom Theme",
+    "description": "",
+    "version": "0.0.1",
+    "publisher": "nnkd",
+    "engines": {
+        "vscode": "^1.25.0"
+    },
+    "categories": [
+        "Themes"
+    ],
+    "contributes": {
+        "themes": [
+            {
+                "label": "Custom",
+                "uiTheme": "vs-dark",
+                "path": "./themes/Custom-color-theme.json"
+            }
+        ]
+    }
+}
