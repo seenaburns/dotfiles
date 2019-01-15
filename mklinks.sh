@@ -33,7 +33,6 @@ function checkedlink {
 srcdir=~/.dotfiles
 destdir=~
 
-checkedlink .bashrc
 checkedlink .bash_profile
 checkedlink .inputrc
 checkedlink .tmux.conf
