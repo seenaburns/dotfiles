@@ -50,7 +50,8 @@ fi
 # ------------------------------------------------------
 #            Custom Prompt
 # ------------------------------------------------------
-GIT_PS1_SHOWDIRTYSTATE=true
+export GIT_PS1_SHOWDIRTYSTATE=true
+export GIT_PS1_SHOWUNTRACKEDFILES=true
 COLOR="\[\e[0;34m\]"
 NORMAL="\[\e[0m\]"
 
