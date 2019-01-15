@@ -14,6 +14,8 @@
 (electric-pair-mode 1) ; brace matching
 (setq-default indent-tabs-mode nil) ; disable tabs
 (setq-default show-trailing-whitespace t)
+(setq-default truncate-lines t)
+(unless (display-graphic-p) (menu-bar-mode -1)) ; disable menu bar in terminal
 
 ; Load path
 (add-to-list 'load-path "~/.emacs.d/themes/")
@@ -21,7 +23,11 @@
 (use-package local)
 
 ; Theme
-(use-package newtheme)
+; use ansitheme if not in a gui
+(if (display-graphic-p)
+  (use-package onedark)
+  (use-package ansitheme))
+; (use-package natural)
 (load-theme 'basic t)
 
 ; Fill
@@ -63,6 +69,7 @@
   :config
   (evil-mode 1)
   (setq x-select-enable-clipboard nil)
+  (evil-select-search-module 'evil-search-module 'evil-search)
   (bind-keys :map evil-normal-state-map (", s" . split-window-below)
              :map evil-normal-state-map (", d" . split-window-right)
              :map evil-normal-state-map (", w" . other-window)
@@ -102,6 +109,13 @@
   (setq ido-decorations (quote ("\n-> " "" "\n   " "\n   ..." "[" "]" " [No match]" " [Matched]" " [Not readable]" " [Too big]" " [Confirm]")))
 )
 
+(use-package swiper
+  :after (evil)
+  :config
+  (bind-keys :map evil-normal-state-map ("g d" . (lambda () (interactive) (swiper (thing-at-point 'word))))
+         :map evil-normal-state-map ("/" . swiper))
+  )
+
 (use-package fzf
   ; :config (setenv "PATH" "")
   :config
@@ -114,10 +128,8 @@
 (use-package projectile
   :after (evil)
   :bind (:map evil-normal-state-map (", l" . projectile-switch-project))
-         ;; :map evil-normal-state-map (", v" . projectile-find-file))
-  :config
-  (projectile-global-mode 1))
-
+  ;; :map evil-normal-state-map (", v" . projectile-find-file))
+  )
 (use-package go-mode)
 (use-package nix-mode)
 
