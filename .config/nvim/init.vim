@@ -269,7 +269,7 @@ if executable('fzf')
 
   if executable('rg')
     " :Find <term> runs `rg <term>` and passes it to fzf
-    command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
+    command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --color "always" '.shellescape(<q-args>), 1, <bang>0)
     nnoremap <leader>/ :Find 
     nnoremap <leader>' :execute "Find " . expand("<cword>")<cr>
   endif
