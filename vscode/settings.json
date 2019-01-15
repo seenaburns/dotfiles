@@ -1,13 +1,24 @@
 {
     "editor.fontFamily": "Fira Mono",
+    "editor.fontSize": 12,
+    "editor.lineHeight": 16.8,
+    "terminal.integrated.fontSize": 10,
+
     "editor.renderWhitespace": "boundary",
     "editor.minimap.enabled": false,
 
-    "vim.hlsearch": true,
+    "editor.formatOnSave": true,
+
+    "workbench.colorTheme": "Custom",
+    "workbench.activityBar.visible": false,
+    "workbench.statusBar.feedback.visible": false,
 
     "telemetry.enableTelemetry": false,
     "telemetry.enableCrashReporter": false,
 
+    "vim.leader": ",",
+    "vim.disableAnnoyingNeovimMessage": true,
+    "vim.hlsearch": true,
     "vim.normalModeKeyBindingsNonRecursive": [
         {
             "before": ["<leader>", "v"],
@@ -50,11 +61,4 @@
             ],
         },
     ],
-
-    "vim.leader": ",",
-    "workbench.activityBar.visible": false,
-    "window.zoomLevel": 1,
-    "editor.fontSize": 10,
-    "terminal.integrated.fontSize": 10,
-    "workbench.colorTheme": "Custom",
 }
