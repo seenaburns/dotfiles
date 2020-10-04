@@ -1,64 +1,93 @@
 {
-    "editor.fontFamily": "Fira Mono",
-    "editor.fontSize": 12,
-    "editor.lineHeight": 16.8,
-    "terminal.integrated.fontSize": 10,
+  "editor.fontFamily": "Fira Code",
+  "editor.fontSize": 12,
+  "editor.formatOnSave": true,
+  "editor.lineHeight": 16,
+  "editor.minimap.enabled": false,
+  "editor.renderWhitespace": "boundary",
+  "editor.tabSize": 8,
+  "terminal.integrated.fontSize": 10,
 
-    "editor.renderWhitespace": "boundary",
-    "editor.minimap.enabled": false,
+  "breadcrumbs.icons": false,
+  "window.zoomLevel": 0,
+  "workbench.activityBar.visible": false,
+  "workbench.statusBar.feedback.visible": false,
 
+  "editor.suggest.showIcons": false,
+  "workbench.editor.showIcons": false,
+  "workbench.iconTheme": null,
+  "workbench.tips.enabled": false,
+
+  "workbench.colorTheme": "Custom",
+
+  "telemetry.enableTelemetry": false,
+  "telemetry.enableCrashReporter": false,
+
+  "vim.leader": ",",
+  "vim.disableAnnoyingNeovimMessage": true,
+  "vim.hlsearch": true,
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<leader>", "v"],
+      "commands": [
+        {
+          "command": "workbench.action.quickOpen"
+        }
+      ]
+    },
+    {
+      "before": ["<leader>", "d"],
+      "commands": [
+        {
+          "command": "workbench.action.splitEditorRight"
+        }
+      ]
+    },
+    {
+      "before": ["<leader>", "s"],
+      "commands": [
+        {
+          "command": "workbench.action.splitEditorDown"
+        }
+      ]
+    },
+    {
+      "before": ["<leader>", "n"],
+      "commands": [
+        {
+          "command": "editor.action.marker.next"
+        }
+      ]
+    },
+    {
+      "before": ["<leader>", "N"],
+      "commands": [
+        {
+          "command": "editor.action.marker.prev"
+        }
+      ]
+    }
+  ],
+
+  "files.associations": {},
+
+  "files.watcherExclude": {
+    "**/vendor/**": true
+  },
+
+  "go.lintOnSave": "off",
+  "go.formatTool": "gofmt",
+  "go.buildOnSave": "off",
+  "go.gotoSymbol.ignoreFolders": ["vendor/**"],
+
+  "[go]": {
+    "editor.insertSpaces": false,
     "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true
+    }
+  },
+  "go.useLanguageServer": true,
 
-    "workbench.colorTheme": "Custom",
-    "workbench.activityBar.visible": false,
-    "workbench.statusBar.feedback.visible": false,
-
-    "telemetry.enableTelemetry": false,
-    "telemetry.enableCrashReporter": false,
-
-    "vim.leader": ",",
-    "vim.disableAnnoyingNeovimMessage": true,
-    "vim.hlsearch": true,
-    "vim.normalModeKeyBindingsNonRecursive": [
-        {
-            "before": ["<leader>", "v"],
-            "commands": [
-                {
-                    "command": "workbench.action.quickOpen"
-                }
-            ],
-        },
-        {
-            "before": ["<leader>", "d"],
-            "commands": [
-                {
-                    "command": "workbench.action.splitEditorRight"
-                }
-            ],
-        },
-        {
-            "before": ["<leader>", "s"],
-            "commands": [
-                {
-                    "command": "workbench.action.splitEditorDown"
-                }
-            ],
-        },
-        {
-            "before": ["<leader>", "n"],
-            "commands": [
-                {
-                    "command": "editor.action.marker.next"
-                }
-            ],
-        },
-        {
-            "before": ["<leader>", "N"],
-            "commands": [
-                {
-                    "command": "editor.action.marker.prev"
-                }
-            ],
-        },
-    ],
+  "C_Cpp.clang_format_sortIncludes": true
 }
