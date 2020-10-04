@@ -10,7 +10,7 @@ endfunction
 
 Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 Plug 'scrooloose/nerdtree'
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
 Plug 'tomtom/tcomment_vim' " gc comments
 Plug 'tpope/vim-surround'
 Plug 'milkypostman/vim-togglelist'
