@@ -97,9 +97,5 @@ fi
 #                       PATH
 # ------------------------------------------------------
 # Include
-# - local executables
-# - local python
 # - util
-export PATH=$PATH:~/.local/bin
-export PYTHONPATH=$PYTHONPATH:~/.local/python
 export PATH=$PATH:~/dev/util
