@@ -8,8 +8,8 @@ case "$1" in
    *.ad[asb]|*.asm|*.inc|*.[ch]|*.[ch]pp|*.[ch]xx|*.cc|*.hh|\
    *.lsp|*.l|*.pas|*.p|*.xml|*.xps|*.xsl|*.axp|*.ppd|*.pov|\
    *.diff|*.patch|*.py|*.rb|*.sql|*.ebuild|*.eclass|*.rs|*.json|*.go|*.pp)
-      pygmentize "$1" ;;
-   *.bzl|*BUILD|*WORKSPACE) pygmentize -l python "$1";;
-   *.yaml) pygmentize -l yaml -fterminal16m -Ostyle=monokai "$1";;
+      pygmentize -fterminal "$1" ;;
+   *.bzl|*BUILD|*WORKSPACE|*.sky) pygmentize -fterminal -l python "$1";;
+   *.yaml) pygmentize -l yaml -fterminal -Ostyle=monokai "$1";;
    *) exit 0;;
 esac

@@ -74,6 +74,7 @@ au BufRead,BufNewFile *.jsonnet*      set filetype=c
 au BufRead,BufNewFile *.libsonnet*    set filetype=c
 au BufRead,BufNewFile todo*           set filetype=todo
 au BufRead,BufNewFile *.txt           set filetype=todo
+au BufRead,BufNewFile *.pp            set filetype=puppet
 
 " Better split character
 " Override color scheme to make split them black
