@@ -90,7 +90,7 @@ if [ -n "NOTES_BASE_PATH" ]
 then
   alias todo="(cd $NOTES_BASE_PATH; nvim todo.txt)"
   alias lstodo="rg --no-line-number ' *(\[.\].*\*)$' $NOTES_BASE_PATH/notes/todo.txt --replace '\$1' | sort"
-  alias journal="(cd $NOTES_BASE_PATH; nvim log.txt)"
+  alias journal="nvim $NOTES_BASE_PATH/journal/journal.txt"
 fi
 
 # ------------------------------------------------------
