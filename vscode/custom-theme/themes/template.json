@@ -1,0 +1,187 @@
+{
+  "name": "Custom",
+  "colors": {
+    "editor.background": "COLOR_BG_MAIN",
+    "editor.lineHighlightBackground": "COLOR_BG_DIM",
+    "editor.selectionBackground": "COLOR_BG_SELECTION",
+    "editorCursor.foreground": "COLOR_PRIMARY",
+    "editorGroup.background": "COLOR_BG_MAIN",
+    "editorGroup.border": "COLOR_BG_MAIN",
+    "editorGroupHeader.tabsBackground": "COLOR_BG_MAIN",
+    "editorHoverWidget.background": "COLOR_BG_MAIN",
+    "editorHoverWidget.border": "COLOR_UI_LOW",
+    "editorIndentGuide.background": "COLOR_BG_DIM",
+    "editorLineNumber.foreground": "COLOR_UI_LOW",
+    "editorWhitespace.foreground": "COLOR_BG_DIM",
+
+    "editorSuggestWidget.background": "COLOR_BG_MAIN",
+    "editorSuggestWidget.border": "COLOR_UI_LOW",
+    "editorSuggestWidget.selectedBackground": "COLOR_BG_DIM",
+
+    "editorWidget.background": "COLOR_BG_MAIN",
+
+    "editorGutter.modifiedBackground": "COLOR_CHANGED",
+    "editorGutter.addedBackground": "COLOR_ADD",
+    "editorGutter.deletedBackground": "COLOR_RM",
+
+    "editor.findMatchBackground": "COLOR_SEARCH_SELECTED",
+    "editor.findMatchHighlightBackground": "COLOR_SEARCH_BG",
+    "editor.selectionHighlightBackground": "COLOR_SEARCH_BG",
+
+    "extensionButton.prominentBackground": "COLOR_UI_LOW",
+    "extensionButton.prominentHoverBackground": "COLOR_UI_FOCUS",
+
+    "focusBorder": "COLOR_UI_FOCUS",
+    "input.background": "COLOR_BG_MAIN",
+    "input.border": "COLOR_UI_LOW",
+
+    "list.activeSelectionBackground": "COLOR_UI_FOCUS",
+    "list.activeSelectionForeground": "COLOR_BG_MAIN",
+    "list.focusBackground": "COLOR_UI_FOCUS",
+    "list.focusForeground": "COLOR_BG_MAIN",
+    "list.hoverBackground": "COLOR_UI_FOCUS",
+    "list.hoverForeground": "COLOR_BG_MAIN",
+    "list.highlightForeground": "COLOR_UI_LOW",
+    "list.inactiveSelectionBackground": "COLOR_BG_MAIN",
+    "list.inactiveSelectionForeground": "COLOR_UI_FOCUS",
+
+    "notification.background": "COLOR_BG_MAIN",
+
+    "peekView.border": "COLOR_UI_LOW",
+    "peekViewEditor.background": "COLOR_BG_MAIN",
+    "peekViewResult.background": "COLOR_BG_MAIN",
+    "peekViewResult.selectionBackground": "#00FFFF",
+    "peekViewTitle.background": "COLOR_BG_MAIN",
+
+    "pickerGroup.border": "COLOR_UI_LOW",
+
+    "scrollbarSlider.activeBackground": "#EDEFF2",
+    "scrollbarSlider.background": "COLOR_BG_DIM",
+    "scrollbarSlider.hoverBackground": "COLOR_UI_LOW",
+
+    "sideBar.background": "COLOR_BG_MAIN",
+    "sideBarSectionHeader.background": "COLOR_BG_DIM",
+
+    "statusBar.background": "COLOR_BG_MAIN",
+    "statusBar.debuggingForeground": "#00FF00",
+    "statusBar.foreground": "COLOR_UI_FOCUS",
+    "statusBar.noFolderBackground": "COLOR_BG_MAIN",
+    "statusBarItem.hoverBackground": "COLOR_UI_LOW",
+
+    "tab.activeBackground": "COLOR_BG_MAIN",
+    "tab.activeForeground": "COLOR_UI_FOCUS",
+    "tab.inactiveForeground": "COLOR_UI_LOW",
+    "tab.border": "COLOR_BG_DIM",
+    "tab.inactiveBackground": "COLOR_BG_MAIN",
+
+    "titleBar.activeBackground": "COLOR_BG_MAIN",
+    "titleBar.activeForeground": "COLOR_UI_FOCUS",
+    "titleBar.inactiveBackground": "COLOR_BG_MAIN",
+    "titleBar.inactiveForeground": "COLOR_UI_LOW"
+  },
+  "tokenColors": [
+    {
+      "settings": {
+        "foreground": "COLOR_FG_MAIN",
+        "background": "COLOR_BG_MAIN",
+        "bracketContentsOptions": "underline",
+        "bracketContentsForeground": "COLOR_ACCENT_2",
+        "bracketsOptions": "underline",
+        "bracketsForeground": "COLOR_ACCENT_2",
+        "tagsOptions": "underline",
+        "tagsForeground": "COLOR_ACCENT_2",
+        "findHighlight": "#314365",
+        "findHighlightForeground": "COLOR_ACCENT_2",
+        "gutter": "COLOR_BG_MAIN",
+        "gutterForeground": "#636d8388",
+        "selectionBorder": "#bbccf51b",
+        "activeGuide": "#464c55",
+        "stackGuide": "#464c55",
+        "highlight": "COLOR_ACCENT_2",
+        "highlightForeground": "COLOR_ACCENT_2",
+        "shadow": "COLOR_BG_MAIN",
+        "shadowWidth": "1"
+      }
+    },
+    {
+      "name": "Text",
+      "scope": ["", "text", "source"],
+      "settings": {
+        "foreground": "COLOR_FG_MAIN",
+        "fontStyle": ""
+      }
+    },
+    {
+      "name": "Comment",
+      "scope": ["comment", "punctuation.definition.comment"],
+      "settings": {
+        "foreground": "COLOR_COMMENT",
+        "fontStyle": ""
+      }
+    },
+    {
+      "name": "Keyword",
+      "scope": ["keyword"],
+      "settings": {
+        "foreground": "COLOR_KEYWORD",
+        "fontStyle": "bold"
+      }
+    },
+    {
+      "name": "Operator",
+      "scope": ["keyword.operator"],
+      "settings": {
+        "foreground": "COLOR_KEYWORD",
+        "fontStyle": "bold"
+      }
+    },
+    {
+      "name": "String",
+      "scope": ["string"],
+      "settings": {
+        "foreground": "COLOR_STRING",
+        "fontStyle": ""
+      }
+    },
+    {
+      "name": "Constant",
+      "scope": ["constant", "constant.other", "constant.character.escape"],
+      "settings": {
+        "foreground": "COLOR_CONSTANT",
+        "fontStyle": ""
+      }
+    },
+    {
+      "name": "Function",
+      "scope": ["support.function", "entity.name.function"],
+      "settings": {
+        "foreground": "COLOR_FUNCTION",
+        "fontStyle": ""
+      }
+    },
+    {
+      "name": "Variable",
+      "scope": ["variable"],
+      "settings": {
+        "foreground": "COLOR_VARIABLE",
+        "fontStyle": ""
+      }
+    },
+    {
+      "name": "JSON Key",
+      "scope": ["support.type.property-name.json"],
+      "settings": {
+        "foreground": "COLOR_VARIABLE",
+        "fontStyle": ""
+      }
+    },
+    {
+      "name": "Markdown header",
+      "scope": ["heading"],
+      "settings": {
+        "foreground": "COLOR_KEYWORD",
+        "fontStyle": ""
+      }
+    }
+  ]
+}
