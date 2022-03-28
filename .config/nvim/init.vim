@@ -1,5 +1,5 @@
 " vim:foldmethod=marker:foldlevel=0
-" zo + zc to open / close folds in case I forgot :P
+" zo + zc to open / close folds
 
 " PLUG {{{
 call plug#begin('~/.config/nvim/plugged')
@@ -9,13 +9,7 @@ function! DoRemote(arg)
 endfunction
 
 Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
-Plug 'scrooloose/nerdtree'
-Plug 'vim-airline/vim-airline'
 Plug 'tomtom/tcomment_vim' " gc comments
-Plug 'tpope/vim-surround'
-Plug 'milkypostman/vim-togglelist'
-Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
-Plug 'neomake/neomake', { 'for': ['rust', 'haskell', 'typescript'] }
 Plug 'airblade/vim-gitgutter'
 Plug 'w0rp/ale'
 
@@ -32,23 +26,6 @@ if executable('fzf')
 else
   Plug 'ctrlpvim/ctrlp.vim'
 endif
-
-" Language plugins
-" Scala plugins
-if executable('scalac')
-  Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
-endif
-" Haskell Plugins
-if executable('ghc')
-  Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
-  Plug 'owickstrom/neovim-ghci', { 'for': 'haskell' }
-endif
-" Rust Plugins
-if executable('rustc')
-  Plug 'rust-lang/rust.vim', { 'for': 'rust' }
-  Plug 'racer-rust/vim-racer', { 'for': 'rust' }
-endif
-" Plug 'vim-ruby/vim-ruby'
 
 call plug#end()
 " }}}
@@ -206,28 +183,6 @@ vnoremap <leader>t :call ToggleTodo()<cr>
 let g:deoplete#enable_at_startup=1
 inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<C-i>"
 
-" NERDTree
-" Open NERDTree in the directory of the current file (or /home if no file is open)
-function! NERDTreeToggleFind()
-  if (exists("t:NERDTreeBufName") && bufwinnr(t:NERDTreeBufName) != -1)
-    execute ":NERDTreeClose"
-  else
-    execute ":NERDTreeFind"
-  endif
-endfunction
-
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-nnoremap <leader>c :call NERDTreeToggleFind()<cr>
-
-" sarsi
-let sarsivim = 'sarsi-nvim'
-if (executable(sarsivim))
-  call rpcstart(sarsivim)
-  " nnoremap <leader>l :cfirst<cr>
-  nnoremap <leader>f :cnext<cr>
-  nnoremap <leader>g :cprevious<cr>
-endif
-
 " Ripgrep for search
 if executable('rg')
   set grepprg=rg\ -i\ --vimgrep
@@ -239,22 +194,6 @@ endif
 
 " airline
 set laststatus=2
-let g:airline_left_sep=""
-let g:airline_left_alt_sep="|"
-let g:airline_right_sep=""
-let g:airline_right_alt_sep="|"
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline#extensions#tabline#show_tab_nr = 1
-let g:airline#extensions#tabline#tab_nr_type = 1 " show tab number not number of split panes
-let g:airline#extensions#tabline#show_close_button = 0
-let g:airline#extensions#tabline#show_buffers = 0
-" let g:airline#extensions#hunks#enabled = 0
-" let g:airline_section_z = ""
-if get(g:, 'airline_theme', 'notloaded') == 'notloaded'
-  source ~/.config/nvim/custom/customairline.vim
-  let g:airline_theme="customairline"
-endif
 
 " FZF
 if executable('rg')
@@ -271,71 +210,14 @@ if executable('fzf')
   if executable('rg')
     " :Find <term> runs `rg <term>` and passes it to fzf
     command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --color "always" '.shellescape(<q-args>), 1, <bang>0)
-    nnoremap <leader>/ :Find 
+    nnoremap <leader>/ :Find
     nnoremap <leader>' :execute "Find " . expand("<cword>")<cr>
   endif
 else
   nnoremap <leader>v :CtrlP<Space><cr>
 endif
 
-" Racer
-set hidden
-let g:racer_cmd = "/home/seena/.cargo/bin/racer"
-let g:racer_experimental_completer = 1
-au FileType rust nmap <leader>rx <Plug>(rust-doc)
-au FileType rust nmap <leader>rd <Plug>(rust-def)
-au FileType rust nmap <leader>rs <Plug>(rust-def-split)
-
-" Neomake
-" Gross hack to stop Neomake running when exitting because it creates a zombie cargo check process
-" which holds the lock and never exits. But then, if you only have QuitPre, closing one pane will
-" disable neomake, so BufEnter reenables when you enter another buffer.
-let s:quitting = 0
-au QuitPre *.rs let s:quitting = 1
-au BufEnter *.rs let s:quitting = 0
-au BufWritePost *.rs if ! s:quitting | Neomake | else | echom "Neomake disabled"| endif
-au QuitPre *.ts let s:quitting = 1
-au BufEnter *.ts let s:quitting = 0
-au BufWritePost *.ts if ! s:quitting | Neomake | else | echom "Neomake disabled"| endif
-let g:neomake_warning_sign = {'text': '?'}
-
-" Haskell
-" Changes highlighting links to use Type/Structure
-let g:haskell_classic_highlighting = 1
-
-augroup ghciMaps
-  au!
-  " Background process and window management
-  au FileType haskell nnoremap <silent> <leader>gs :GhciStart<CR>
-  au FileType haskell nnoremap <silent> <leader>gk :GhciKill<CR>
-
-  " Open GHCi split horizontally
-  au FileType haskell nnoremap <silent> <leader>go :GhciOpen<CR>
-  au FileType haskell nnoremap <silent> <leader>gh :GhciHide<CR>
-
-  " Automatically reload on save
-  au BufWritePost *.hs GhciReload
-
-  " Load individual modules
-  au FileType haskell nnoremap <silent> <leader>gl :GhciLoadCurrentModule<CR>
-  au FileType haskell nnoremap <silent> <leader>gf :GhciLoadCurrentFile<CR>
-augroup END
-
-" GHCi starts automatically. Set this if you'd like to prevent that.
-let g:ghci_start_immediately = 1
-
-" GHCi Settings
-" Check if shell.nix exists in root, use nix shell if so
-if !empty(glob('shell.nix'))
-  let g:ghci_command = 'nix-shell --command "cabal repl"'
-  let g:ghci_command_line_options = ''
-else
-  let g:ghci_command = 'ghci'
-  let g:ghci_command_line_options = '-fobject-code'
-endif
-
 " ALE
-let g:airline#extensions#ale#enabled = 1
 let g:ale_linters = {'go': ['golint', 'gofmt']}
 let g:ale_lint_delay = 800
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)

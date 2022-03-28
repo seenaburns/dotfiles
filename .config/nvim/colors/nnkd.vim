@@ -113,3 +113,6 @@ hi link qfFileName Identifier
 
 " Language specific
 hi GoString cterm=none ctermbg=none ctermfg=blue
+
+" StatusLine
+hi StatusLine cterm=none ctermbg=none ctermfg=white
