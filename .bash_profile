@@ -5,6 +5,7 @@
 export CLICOLOR=1 # LS Color
 alias grep="grep --color=auto"
 export GREP_COLOR='1;32'
+[[ "$OSTYPE" == "linux-gnu" ]] && alias ls='ls --color=auto'
 
 # Better Bash History
 shopt -s histappend # session appends not overwrites to history
