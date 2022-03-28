@@ -70,7 +70,7 @@ PS1+=" > ${NORMAL}"
 alias la="ls -lah"
 alias igrep="grep -ir"
 if hash rg 2>/dev/null; then alias rgi="rg -i"; fi
-alias aliases="cat ~/.bash_private ~/.bash_profile | grep '^alias\|^function'";
+alias aliases="cat ~/.bash_private ~/.bash_profile | grep '^alias\|^function\|\(\) {' | sort";
 
 # Find a file with a pattern in name:
 function ff() { find . -type f -iname '*'"$*"'*' -ls ; }
