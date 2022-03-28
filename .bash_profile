@@ -14,7 +14,6 @@ HISTSIZE=10000
 HISTCONTROL=ignoreboth # ignore dup commands, commands starting with space
 # After each command, save and reload history
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
-# export PROMPT_COMMAND="history -a; history -c; $PROMPT_COMMAND"
 
 # Use nvim or vim as editor
 if hash nvim 2>/dev/null;
@@ -69,14 +68,8 @@ PS1+=" > ${NORMAL}"
 #            Command Aliases / Functions
 # ------------------------------------------------------
 alias la="ls -lah"
-alias igrep="grep -ir"
 if hash rg 2>/dev/null; then alias rgi="rg -i"; fi
 alias aliases="cat ~/.bash_private ~/.bash_profile | grep '^alias\|^function\|\(\) {' | sort";
-
-# Find a file with a pattern in name:
-function ff() { find . -type f -iname '*'"$*"'*' -ls ; }
-# Find a file with pattern $1 in name and Execute $2 on it:
-function fe() { find . -type f -iname '*'"${1:-}"'*' -exec ${2:-file} {} \;  ; }
 
 sorted-du () {
   paste -d '#' <(du -cs *) <(du -chs *) | sort -rn | cut -d '#' -f 2
@@ -86,11 +79,8 @@ sorted-du () {
 NOTES_BASE_PATH=""
 [ -d "$HOME/Documents/notes" ] && NOTES_BASE_PATH="$HOME/Documents/notes"
 [ -d "$HOME/docs/notes" ]      && NOTES_BASE_PATH="$HOME/docs/notes"
-
 if [ -n "NOTES_BASE_PATH" ]
 then
-  alias todo="(cd $NOTES_BASE_PATH; nvim todo.txt)"
-  alias lstodo="rg --no-line-number ' *(\[.\].*\*)$' $NOTES_BASE_PATH/notes/todo.txt --replace '\$1' | sort"
   alias journal="nvim $NOTES_BASE_PATH/journal/journal.txt"
 fi
 
